@@ -1,0 +1,24 @@
+1 - login form: 
+	(search about ui)
+
+2 - starting page: 
+	with simplpe text and image and button
+
+3 - quiz page
+	mark a Quistion so you can dirctly return to it (save in list) 
+	progress bar	
+	
+	questions will show as a slider 
+	
+	questions will not show in the same order in everytime you visit
+	the app  
+	
+	finally show the result wrong answers and correct answers
+
+	
+*********
+some optional 
+	1- set a timer for every question
+	2- randomize the answers every time
+	 	
+	
