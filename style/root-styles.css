@@ -1,0 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --background-body : #e6ebf5ff;
+    --button-color : #1d1463ff;
+}
+body {
+    background-color: var(--background-body);
+    font-family: 'Roboto', sans-serif;
+}
