@@ -1,3 +1,131 @@
 #form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);   
+}
+#form-container .cover {
+    background-color: var(--main-color);
+    width: 30rem;
+    height: 30rem;
+    position: relative;
+    overflow: hidden;
+}
+#form-container .cover h1 {
+    color: white;
+    font-size: 2rem;
+    padding-top: 30px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+#form-container .cover p {
+    font-size: 0.7rem;
+    padding: 10px 20px;
+    color: var(--dark-white);
+}
+#form-container .sign-up-img {
+    height: 100%;
+    transition: 0.5s ease;
+    transition-delay: 0.2s;
+    transform: translateY(-201%);
+}
+#form-container .sign-in-img {
+    height: 100%;
+    transition: 0.5s ease;
+    transition-delay: 0.2s;
+}
+#form-container .sign-in-img img {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    max-width: 90%;
+    height: auto;
+    margin-top: -5rem;
+}
+#form-container .sign-up-img img {
+    position: absolute;
+    bottom: -10%;
+    right: 0px;
+    max-width: 90%;
+    height: auto;
+    margin-top: -5rem;
+}
+/*___________________FORMS_____________________ */
+#form-container .form {
+    position: relative;
+    height: calc(480px - 100px)  ;
+    background: white;
+    min-width: 350px ;
+    padding: 40px;
+    overflow: hidden;
+}
+#form-container .sign-up , #form-container .sign-in {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    top: 5%;
+}
+#form-container .sign-in {
+    transition: 0.5s ease;
+}
+#form-container .sign-up {
+    transform: translateX(-120%);
+    transition: 0.5s ease;
+}
 
+#form-container .form p {
+    font-size: 0.7rem;
+    padding: 15px 20px 30px 20px;
+    color: var(--sub-title-color);
+}
+#form-container .form p:last-child {
+    padding: 10px 0px 0px 20px;
+    width: 240px;
+}
+
+#form-container .form a {
+    text-decoration: none;
+    font-size: 0.7rem;
+    padding: 10px 0px 10px 20px;
+}
+#form-container .form label {
+    color : #635f87ff;
+    display: block;
+    padding: 0px 20px;
+}
+#form-container .form input , #form-container .form button {
+    padding: 10px 40px 10px 10px;
+    width: 90%;
+    border: 0.2px solid rgb(171, 171, 171);
+    border-radius: 5px;
+    margin :10px 0px 10px 20px;
+    transition: border 1s ease;
+}
+#form-container .form input:focus {
+    outline: none;
+    border: 0.2px solid var(--button-color);
+}
+#form-container .form button {
+    background-color: var(--button-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: block;
+    width: 90%;
+}
+#form-container .input { 
+    position: relative;
+}
+#form-container .form i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    color: var(--button-color);
 }
