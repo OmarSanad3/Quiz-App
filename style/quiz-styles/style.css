@@ -1,0 +1,9 @@
+#quiz-container {
+  height: 100%;
+}
+
+#quiz-container .content {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
