@@ -4,6 +4,22 @@ const closeSideBarBtn = document.querySelector(
 const openSideBarBtn = document.querySelector("#quiz-container #open-side-bar");
 const sideBar = document.querySelector("#quiz-container .content .side-bar");
 
+function handleSideBar() {
+  if (window.innerWidth > 768) {
+    if (sideBar.classList.contains("hide")) {
+      sideBar.classList.remove("hide");
+    }
+  } else {
+    if (!sideBar.classList.contains("hide")) {
+      sideBar.classList.add("hide");
+    }
+  }
+}
+
+if (sideBar !== null) {
+  handleSideBar();
+}
+
 if (closeSideBarBtn !== null) {
   closeSideBarBtn.addEventListener("click", () => {
     sideBar.classList.add("hide");
@@ -17,9 +33,5 @@ if (openSideBarBtn !== null) {
 }
 
 window.addEventListener("resize", () => {
-  if (window.innerWidth > 768) {
-    sideBar.classList.remove("hide");
-  } else {
-    sideBar.classList.add("hide");
-  }
+  handleSideBar();
 });
