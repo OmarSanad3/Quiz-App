@@ -7,6 +7,29 @@
   position: relative;
 }
 
+#quiz-container .content #open-side-bar {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#quiz-container .content .side-bar.hide {
+  transform: translateX(200%);
+}
+
 #quiz-container .content .side-bar #close-side-bar {
   position: absolute;
   top: 20px;
