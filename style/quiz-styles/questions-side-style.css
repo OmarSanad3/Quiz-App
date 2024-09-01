@@ -4,6 +4,8 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  margin-top: 150px;
+  margin-bottom: 50px;
 }
 
 progress {
@@ -11,7 +13,7 @@ progress {
   height: 20px;
   margin: 20px 8px;
   position: absolute;
-  top: 2px;
+  top: -140px;
   left: 50%;
   transform: translateX(-50%);
 
@@ -46,6 +48,7 @@ progress::-moz-progress-bar {
 @media (max-width: 768px) {
   progress {
     width: 65%;
+    top: -80px;
   }
 }
 
