@@ -11,8 +11,10 @@
 	<link rel="stylesheet" href="style/root-styles.css">
 	<link rel="stylesheet" href="style/icons/all.min.css">
 	<title>Quizzo</title>
+
 	<script src="./js/main.js" type="module" defer></script>
 	<script src="./js/quiz-container/side-bar-responsive.js" defer></script>
+	<script src="./js/quiz-container/index.js" defer type="module"></script>
 </head>
 
 <body>
@@ -29,7 +31,7 @@
 				<progress id="questions-progress" value="2" max="10">2 / 10</progress>
 
 				<div class="question-box">
-					<div class="question">
+					<div class="question" id="question">
 						<h3>Question 1</h3>
 						<p>
 							What is the capital of France?
@@ -52,13 +54,13 @@
 					</div>
 
 					<div class="controllers">
-						<button class="prev">
+						<button class="prev" id="prevBtn">
 							Previous
 						</button>
 						<button class="flag">
 							<i class="fa-solid fa-flag"></i>
 						</button>
-						<button class="next">
+						<button class="next" id="nextBtn">
 							Next
 						</button>
 					</div>
