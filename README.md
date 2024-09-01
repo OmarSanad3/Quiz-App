@@ -1,4 +1,4 @@
-# Quizoo
+# Quizzo
 
 Quizoo is an interactive quiz application designed to test your knowledge on various topics. The app features a user-friendly interface with a sign-in and sign-up form, and a responsive design that adapts to different screen sizes.
 
