@@ -4,8 +4,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="syle.css">
+	<!-- <link rel="stylesheet" href="syle.css"> -->
+	<link rel="stylesheet" href="style/quiz-styles/style.css">
+	<link rel="stylesheet" href="style/quiz-styles/questions-side-style.css">
+	<link rel="stylesheet" href="style/quiz-styles/side-bar-style.css">
+	<link rel="stylesheet" href="style/root-styles.css">
+	<link rel="stylesheet" href="style/icons/all.min.css">
 	<title>Quizzo</title>
+	<script src="./js/main.js" type="module" defer></script>
 </head>
 
 <body>
@@ -17,7 +23,92 @@
 
 	<div id="quiz-container">
 
-	</div>
+		<div class="content">
+			<div class="questions-side">
+				<progress id="questions-progress" value="2" max="10">2 / 10</progress>
+
+				<div class="question-box">
+					<div class="question">
+						<h3>Question 1</h3>
+						<p>
+							What is the capital of France?
+						</p>
+					</div>
+
+					<div class="options">
+						<button class="option">
+							Paris
+						</button>
+						<button class="option">
+							London
+						</button>
+						<button class="option">
+							Berlin
+						</button>
+						<button class="option">
+							Madrid
+						</button>
+					</div>
+
+					<div class="controllers">
+						<button class="prev">
+							Previous
+						</button>
+						<button class="flag">
+							<i class="fa-solid fa-flag"></i>
+						</button>
+						<button class="next">
+							Next
+						</button>
+					</div>
+				</div>
+
+			</div>
+			<div class="side-bar">
+
+				<!-- User Information -->
+				<div class="user-info">
+					<img src="./assets/profile.jpeg" alt="user">
+					<h3>Omar Sanad</h3>
+					<button class="logout">
+						logout
+					</button>
+				</div>
+
+				<!-- Saved Questions -->
+				<div class="timer-and-saved-questions">
+
+					<!-- timer and number of saved questions -->
+					<div class="header">
+						<div class="timer">
+							<i class="fa-solid fa-clock"></i>
+							<span>04:23</span>
+						</div>
+						<div class="saved-questions-icon">
+							<i class="fa-solid fa-bookmark"></i>
+							<span>3</span>
+						</div>
+					</div>
+
+					<!-- Saved Questions list -->
+					<div class="saved-questions">
+						<button>Question 1</button>
+						<button>Question 2</button>
+						<button>Question 3</button>
+					</div>
+
+				</div>
+				<!-- Submit Button -->
+				<div class="submit-button">
+					<button>
+						Submit
+					</button>
+				</div>
+			</div>
+
+
+		</div>
+
 
 </body>
 
