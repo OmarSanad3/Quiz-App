@@ -5,5 +5,5 @@
 #quiz-container .content {
   height: 100%;
   display: grid;
-  grid-template-columns: 80% 20%;
+  grid-template-columns: 1fr auto;
 }

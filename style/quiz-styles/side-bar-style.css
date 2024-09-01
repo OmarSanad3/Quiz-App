@@ -1,7 +1,14 @@
 #quiz-container .content .side-bar {
+  display: none;
   background-color: var(--primary-color);
-  display: grid;
+  /* display: grid; */
   grid-template-rows: auto 1fr auto;
+}
+
+@media (min-width: 768px) {
+  #quiz-container .content .side-bar {
+    display: grid;
+  }
 }
 
 /* User Info Section */
@@ -46,6 +53,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  gap: 20px;
   align-items: center;
   padding: 20px;
 }
@@ -63,17 +71,6 @@
 }
 
 /* Saved Questions List Section */
-
-/* 
-					<!-- Saved Questions list -->
-					<div class="saved-questions">
-						<button>Question 1</button>
-						<button>Question 2</button>
-						<button>Question 3</button>
-					</div>
-
-
-*/
 
 #quiz-container .content .side-bar .timer-and-saved-questions .saved-questions {
   display: flex;
@@ -97,9 +94,6 @@
   color: var(--button-color);
   transform: scale(1.05);
 }
-
-
-
 
 /* Submit Button Section */
 
