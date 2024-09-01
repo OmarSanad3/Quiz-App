@@ -104,6 +104,11 @@ progress::-moz-progress-bar {
   transition: all 0.3s;
 }
 
+#quiz-container .content .questions-side .question-box .options button.option.selected {
+  background-color: var(--primary-color);
+  color: white;
+}
+
 #quiz-container .content .questions-side .question-box .options button.option:hover {
   background-color: var(--primary-color);
   color: white;

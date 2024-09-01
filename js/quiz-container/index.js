@@ -6,9 +6,19 @@ const question = document.querySelector("#quiz-container #question");
 const answers = document.querySelectorAll("#quiz-container .options .option");
 const nextBtn = document.querySelector("#quiz-container #nextBtn");
 const prevBtn = document.querySelector("#quiz-container #prevBtn");
+const prgBar = document.querySelector("#quiz-container #questions-progress");
+const submitBtn = document.querySelector("#quiz-container #submit-quiz");
 
 /* create a quiz instance */
-const quiz = new Quiz(QUESTIONS, question, answers);
+const quiz = new Quiz(QUESTIONS, question, answers, prgBar);
+
+/* converting nodelist to array */
+const answersArr = Array.from(answers);
+answersArr.forEach((answer, i) => {
+  answer.addEventListener("click", () => {
+    quiz.checkAnswer(i);
+  });
+});
 
 function handleDisabledBtns() {
   if (quiz.isFirstQuestion) prevBtn.disabled = true;
@@ -19,6 +29,10 @@ function handleDisabledBtns() {
 }
 
 handleDisabledBtns();
+
+submitBtn.addEventListener("click", () => {
+  quiz.calculateScore();
+});
 
 /* render the first question */
 quiz.renderQuestion();
