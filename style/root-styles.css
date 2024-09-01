@@ -1,16 +1,16 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 :root {
-    --background-body : #e6ebf5ff;
-    --button-color : #1d1463ff;
-    --main-color : #3b60f5ff;
-    --sub-title-color :#c0bfc9ff;
-    --dark-white : rgb(242, 242, 242);
+  --background-body: #e6ebf5ff;
+  --button-color: #1d1463ff;
+  --main-color: #3b60f5ff;
+  --sub-title-color: #c0bfc9ff;
+  --dark-white: rgb(242, 242, 242);
 }
 body {
-    background-color: var(--background-body);
-    font-family: 'Roboto', sans-serif;
+  background-color: var(--background-body);
+  font-family: "Roboto", sans-serif;
 }
