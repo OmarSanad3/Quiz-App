@@ -4,6 +4,8 @@
     box-sizing: border-box;
 }
 :root {
+    --primary-color: #3B60F6;
+    --secondary-color: #7DAEFD;
     --background-body : #e6ebf5ff;
     --button-color : #1d1463ff;
 }
