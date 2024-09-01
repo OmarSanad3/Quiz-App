@@ -63,6 +63,7 @@ function showSuccessPage(event) {
   showSuccessImg.transitionDelay = "0.8s";
   showSuccessImg.transform = "translate(30%,-200%)";
 }
+/* to handle transition in mobile screens */
 function showSuccessPageMobile(event) {
   event.preventDefault();
   console.log("mobile");
@@ -85,8 +86,8 @@ function showSuccessPageMobile(event) {
 }
 
 const InMobileScreen = window.matchMedia("(max-width: 768px)");
-if (!InMobileScreen.matches) {
-  signButton.addEventListener("click", showSuccessPage);
-} else {
+if (InMobileScreen.matches) {
   signButton.addEventListener("click", showSuccessPageMobile);
+} else {
+  signButton.addEventListener("click", showSuccessPage);
 }

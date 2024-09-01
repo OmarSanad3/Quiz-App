@@ -7,7 +7,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%); /* Safari */
+  -ms-transform: translate(-50%, -50%); /* IE 9 */
 }
+
 /* handle cover section and transitions */
 #form-container .cover {
   background-color: var(--primary-color);
@@ -16,7 +19,11 @@
   position: relative;
   overflow: hidden;
   transition: 1s ease;
+  -webkit-transition: 1s ease; /* Safari */
+  -moz-transition: 1s ease; /* Firefox */
+  -o-transition: 1s ease; /* Opera */
 }
+
 #form-container .cover h1 {
   color: white;
   font-size: 2rem;
@@ -29,12 +36,20 @@
   padding: 10px 20px;
   color: var(--background-body);
 }
+
 #form-container .sign-in-img,
 #form-container .sign-up-img {
   height: 100%;
   transition: 0.5s ease;
+  -webkit-transition: 0.5s ease; /* Safari */
+  -moz-transition: 0.5s ease; /* Firefox */
+  -o-transition: 0.5s ease; /* Opera */
   transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s; /* Safari */
+  -moz-transition-delay: 0.2s; /* Firefox */
+  -o-transition-delay: 0.2s; /* Opera */
 }
+
 #form-container .success-img {
   height: 100%;
   display: flex;
@@ -42,14 +57,24 @@
   justify-content: center;
   align-items: center;
   transition: 1s ease;
+  -webkit-transition: 1s ease; /* Safari */
+  -moz-transition: 1s ease; /* Firefox */
+  -o-transition: 1s ease; /* Opera */
   transition-delay: 0.2s;
+  -webkit-transition-delay: 0.2s; /* Safari */
+  -moz-transition-delay: 0.2s; /* Firefox */
+  -o-transition-delay: 0.2s; /* Opera */
   transform: translate(30%, 100%);
+  -webkit-transform: translate(30%, 100%); /* Safari */
+  -ms-transform: translate(30%, 100%); /* IE 9 */
   position: absolute;
   z-index: 5;
 }
+
 #form-container .success-img h1 {
   text-align: center;
 }
+
 #form-container .success-img button {
   background-color: var(--button-color);
   color: white;
@@ -64,7 +89,10 @@
 
 #form-container .sign-up-img {
   transform: translateY(-211%);
+  -webkit-transform: translateY(-211%); /* Safari */
+  -ms-transform: translateY(-211%); /* IE 9 */
 }
+
 #form-container .sign-in-img img,
 #form-container .sign-up-img img {
   position: absolute;
@@ -74,6 +102,7 @@
   height: auto;
   margin-top: -5rem;
 }
+
 #form-container .success-img img {
   height: 60%;
 }
@@ -123,10 +152,12 @@
   overflow: hidden;
   box-shadow: 0px 0px 20px 0px rgb(1 1 1 / 10%);
   z-index: -1;
-  /* transform: translateX(-10%); */
   display: flex;
   justify-content: center;
   transition: 1s ease;
+  -webkit-transition: 1s ease; /* Safari */
+  -moz-transition: 1s ease; /* Firefox */
+  -o-transition: 1s ease; /* Opera */
   height: 480px;
 }
 #form-container .sign-up,
@@ -141,10 +172,18 @@
 #form-container .sign-in {
   gap: 15px;
   transition: 0.5s ease;
+  -webkit-transition: 0.5s ease; /* Safari */
+  -moz-transition: 0.5s ease; /* Firefox */
+  -o-transition: 0.5s ease; /* Opera */
 }
 #form-container .sign-up {
   transform: translateX(-130%);
+  -webkit-transform: translateX(-130%); /* Safari */
+  -ms-transform: translateX(-130%); /* IE 9 */
   transition: 0.5s ease;
+  -webkit-transition: 0.5s ease; /* Safari */
+  -moz-transition: 0.5s ease; /* Firefox */
+  -o-transition: 0.5s ease; /* Opera */
 }
 /* ___________Basic label and input ______________________*/
 #form-container .form p {
@@ -174,7 +213,11 @@
   border-radius: 5px;
   margin: 10px 0px 10px 20px;
   transition: border 1s ease;
+  -webkit-transition: border 1s ease; /* Safari */
+  -moz-transition: border 1s ease; /* Firefox */
+  -o-transition: border 1s ease; /* Opera */
 }
+
 #form-container .form input:focus {
   outline: none;
   border: 0.2px solid var(--button-color);
@@ -196,4 +239,7 @@
   right: 15px;
   top: 50%;
   color: var(--button-color);
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%); /* Safari */
+  -ms-transform: translateY(-50%); /* IE 9 */
 }
