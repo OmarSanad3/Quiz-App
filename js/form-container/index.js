@@ -13,6 +13,7 @@ goSignUp.addEventListener("click", function (event) {
   event.preventDefault();
   let moveSignIn = signInForm.style;
   moveSignIn.transform = "translateY(150%)";
+  moveSignIn.transitionDelay = "0s";
 
   let showSignUp = signUpForm.style;
   showSignUp.transform = "translateX(0)";
@@ -30,6 +31,7 @@ goSignIn.addEventListener("click", function (event) {
   event.preventDefault();
   let moveSignUp = signUpForm.style;
   moveSignUp.transform = "translateX(-130%)";
+  moveSignUp.transitionDelay = "0s";
 
   let showSignIn = signInForm.style;
   showSignIn.transform = "translateY(0)";
