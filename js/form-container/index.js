@@ -1,17 +1,17 @@
 const DOM = document.getElementById("form-container");
 
 const signInForm = DOM.querySelector(".sign-in");
-const goSignUp = signInForm.querySelector("a");
-
 const signUpForm = DOM.querySelector(".sign-up");
+
+const goSignUp = signInForm.querySelector("a");
 const goSignIn = signUpForm.querySelector("a");
+
 const cover = DOM.querySelector(".cover");
 
-/* move SIGN IN form */
+/* go to sign up form */
 goSignUp.addEventListener("click", function (event) {
   event.preventDefault();
   let moveSignIn = signInForm.style;
-  moveSignIn.transitionDelay = "0s";
   moveSignIn.transform = "translateY(150%)";
 
   let showSignUp = signUpForm.style;
@@ -25,11 +25,10 @@ goSignUp.addEventListener("click", function (event) {
   toggleCover2.transform = "translateY(-100%)";
 });
 
-/* move SIGN UP form */
+/*go to sign in form*/
 goSignIn.addEventListener("click", function (event) {
   event.preventDefault();
   let moveSignUp = signUpForm.style;
-  moveSignUp.transitionDelay = "0s";
   moveSignUp.transform = "translateX(-130%)";
 
   let showSignIn = signInForm.style;
@@ -44,10 +43,10 @@ goSignIn.addEventListener("click", function (event) {
 });
 
 /* show starting page */
-const signButton = DOM.querySelector(".sign-in button");
+const signInButton = DOM.querySelector(".sign-in button");
 
 /* this function work in big screen only */
-function showSuccessPage(event) {
+function showSuccessPageBigScreen(event) {
   event.preventDefault();
 
   cover.style.transform = "translateX(40%) scale(1.1)";
@@ -63,6 +62,7 @@ function showSuccessPage(event) {
   showSuccessImg.transitionDelay = "0.8s";
   showSuccessImg.transform = "translate(30%,-200%)";
 }
+
 /* to handle transition in mobile screens */
 function showSuccessPageMobile(event) {
   event.preventDefault();
@@ -77,7 +77,6 @@ function showSuccessPageMobile(event) {
   styleCover.transitionDelay = "0.5s";
 
   let moveForm = DOM.querySelector(".form").style;
-  moveForm.transitionDelay = "0s";
   moveForm.opacity = "0";
 
   let showSuccessImg = cover.querySelector(".success-img").style;
@@ -86,8 +85,102 @@ function showSuccessPageMobile(event) {
 }
 
 const InMobileScreen = window.matchMedia("(max-width: 768px)");
-if (InMobileScreen.matches) {
-  signButton.addEventListener("click", showSuccessPageMobile);
-} else {
-  signButton.addEventListener("click", showSuccessPage);
+
+/* Validate email and password */
+function validateEmailAndPassword(email , password){
+  // Regular expression for basic email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert("Please enter a valid email address.");
+    return false;
+  }
+  if(!password){
+    alert("Please enter password ");
+    return false;
+  }
+  if(password.length < 8){
+    alert("Password must be at least 8 characters long");
+    return false;
+  }
+  if(!email){
+    alert("Please enter email ");
+    return false;
+  }
+  return true;
 }
+
+/* Check if user exists in local storage */
+function checkUserCredentials(event) {
+  event.preventDefault();
+  const email = signInForm.querySelector("input[type='email']").value;
+  const password = signInForm.querySelector("input[type='password']").value;
+
+  const storedPassword = localStorage.getItem(email);
+
+  if (storedPassword && storedPassword === password) {
+    if (InMobileScreen.matches) {
+      showSuccessPageMobile(event);
+    } else {
+      showSuccessPageBigScreen(event);
+    }
+  }
+  else if(storedPassword && storedPassword !== password){
+    alert("Password is incorrect");
+  }
+  else {
+    alert("User does not exist. Please sign up.");
+  }
+}
+signInButton.addEventListener("click", checkUserCredentials);
+
+
+/* Add user to local storage when sign up*/
+function addUser(event) {
+  event.preventDefault();
+  const email = signUpForm.querySelector("input[type='email']").value;
+  const Password = signUpForm.querySelector("input[id='set-password']").value;
+  const confirmPassword = signUpForm.querySelector("input[id='confirm-password']").value;
+
+  if(!validateEmailAndPassword(email , Password)){
+    return
+  }
+
+  if(Password !== confirmPassword){
+    alert("Passwords do not match");
+    return;
+  }
+  // const getimage = signUpForm.getElementById("image");
+  if (localStorage.getItem(email)) {
+    alert("User already exists.");
+  } else {
+
+    // let imagebase64 = "";
+    // getimage.addEventListener("change", function () {
+      // const reader = new FileReader();
+      // reader.addEventListener("load", function () {
+      //   imagebase64 = reader.result;
+      // });
+      // reader.readAsDataURL(getimage.files[0]);
+    // });
+    
+    // const userData = {
+      //   password: Password,
+      //   image: imagebase64
+      // };
+    // localStorage.setItem(email, JSON.stringify(userData));
+    localStorage.setItem(email, Password);
+    alert("User registered successfully.");
+    goSignIn.click(); // Move to sign-in form after successful registration
+  }
+}
+
+const signUpButton = signUpForm.querySelector("button");
+signUpButton.addEventListener("click", addUser);
+
+/* go to quiz page */
+const goQuiz = DOM.querySelector(".success-img button");
+goQuiz.addEventListener("click", function (event) {
+  event.preventDefault();
+  DOM.style.transform = "translate(-50% , -190%)";
+  DOM.style.opacity = "0";
+});

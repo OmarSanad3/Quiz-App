@@ -7,8 +7,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  -webkit-transform: translate(-50%, -50%); /* Safari */
-  -ms-transform: translate(-50%, -50%); /* IE 9 */
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transition: 1s ease;
+  -webkit-transition: 1s ease;
+  -moz-transition: 1s ease;
+  -ms-transition: 1s ease;
+  -o-transition: 1s ease;
 }
 
 /* handle cover section and transitions */
@@ -217,7 +222,6 @@
   -moz-transition: border 1s ease; /* Firefox */
   -o-transition: border 1s ease; /* Opera */
 }
-
 #form-container .form input:focus {
   outline: none;
   border: 0.2px solid var(--button-color);
@@ -234,12 +238,42 @@
 #form-container .input {
   position: relative;
 }
+
+/* add profile picture style */
+#form-container .sign-up .input:first-child {
+  display: flex;
+} 
+ #form-container .sign-up .input input[type="file"] {
+  display: none;
+}
+#form-container .sign-up .input:nth-child(3) {
+  position: absolute;
+    top: 0;
+    left: 49%;
+}
+#form-container .sign-up .input .custom-file-label {
+  transform: translateY(4rem);
+  font-size: 0.6rem;
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--button-color);
+  transition: background-color 0.3s ease;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+  -webkit-transform: translateY(4rem);
+  -moz-transform: translateY(4rem);
+  -ms-transform: translateY(4rem);
+  -o-transform: translateY(4rem);
+}
+#form-container .input .custom-file-label:hover {
+  color: var(--primary-color);
+}
+
 #form-container .form i {
   position: absolute;
   right: 15px;
   top: 50%;
   color: var(--button-color);
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%); /* Safari */
-  -ms-transform: translateY(-50%); /* IE 9 */
 }

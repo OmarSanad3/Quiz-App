@@ -39,7 +39,7 @@
       </div>
       <!-- handle two forms -->
       <div class="form">
-        <form action="" method="" class="sign-in">
+        <form action="" method="post" class="sign-in">
           <p>Don't have an account? <a href="#">Sign Up</a></p>
           <div class="input">
             <label for="email">E-Mail</label>
@@ -56,12 +56,16 @@
           <p>by clicking sign in you agree to our terms and conditions</p>
         </form>
 
-        <form action="" method="" class="sign-up">
+        <form action="" method="post" class="sign-up">
           <p>Already have an account? <a href="#">Sign In</a></p>
           <div class="input">
-            <label for="email">User name</label>
+            <label for="text">User name</label>
             <input type="text" name="username" id="set-username" required />
             <i class="fa-regular fa-user"></i>
+          </div>
+          <div class="input">
+            <label for="file" class="custom-file-label">Add Profile Picture</label>
+            <input type="file" name="file" id="image" />
           </div>
           <div class="input">
             <label for="email">E-Mail</label>
