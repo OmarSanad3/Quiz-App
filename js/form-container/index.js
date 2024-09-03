@@ -88,42 +88,20 @@ function showSuccessPageMobile(event) {
 
 const InMobileScreen = window.matchMedia("(max-width: 768px)");
 
-/* Validate email and password in sign up*/
-function validateEmailAndPassword(email, password) {
-  // Regular expression for basic email validation
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    alert("Please enter a valid email address.");
-    return false;
+function showErrorMessages(messages, inputBox, label) {
+  if (!label.querySelector("span")) {
+    const error = document.createElement("span");
+    error.textContent = messages;
+    error.style.color = "red";
+    error.style.fontSize = "9px";
+    error.style.margin = "0";
+    error.style.padding = "0";
+    error.style.display = "inline-block";
+    error.style.marginLeft = "10px"; // Adjust the spacing as needed
+    error.style.position = "absolute";
+    inputBox.style.border = "1px solid red";
+    label.appendChild(error);
   }
-  if (!password) {
-    alert("Please enter password ");
-    return false;
-  }
-  if (password.length < 8) {
-    alert("Password must be at least 8 characters long");
-    return false;
-  }
-  if (!email) {
-    alert("Please enter email ");
-    return false;
-  }
-  return true;
-}
-
-function showErrorMessages(messages, inputBox) {
-  const error = document.createElement("span");
-  error.textContent = messages;
-  error.style.color = "red";
-  error.style.fontSize = "9px";
-  error.style.margin = "0";
-  error.style.padding = "0";
-  error.style.display = "inline-block";
-  error.style.marginLeft = "10px"; // Adjust the spacing as needed
-  error.style.position = "absolute";
-  inputBox.style.border = "1px solid red";
-
-  return error;
 }
 
 function removeErrorMessages(lable, inputBox) {
@@ -139,7 +117,7 @@ function checkUserCredentials(event) {
   const emailLabel = signInForm.querySelector("label[for='email']");
   const passwordLabel = signInForm.querySelector("label[for='password']");
 
-  const storedPassword = localStorage.getItem(email.value);
+  const storedPassword = localStorage.getItem(email.value); // string of user data
 
   email.addEventListener("input", function () {
     // Remove error message when user starts typing
@@ -150,28 +128,35 @@ function checkUserCredentials(event) {
     removeErrorMessages(passwordLabel, password);
   });
 
-  if (storedPassword && storedPassword === password.value) {
+  if (storedPassword) {
     // User exists
-    if (InMobileScreen.matches) {
-      showSuccessPageMobile(event);
+    const userData = JSON.parse(storedPassword); // convert string to object
+    console.log(userData.password);
+    console.log(password.value);
+    if (userData.password === password.value) {
+      // Set the profile image
+      if (userData.image !== "") {
+        let setProfileImage = document
+          .getElementById("quiz-container")
+          .querySelector(".user-info img");
+        setProfileImage.src = userData.image;
+      }
+      if (InMobileScreen.matches) {
+        showSuccessPageMobile(event);
+      } else {
+        showSuccessPageBigScreen(event);
+      }
     } else {
-      showSuccessPageBigScreen(event);
-    }
-  } else if (storedPassword && storedPassword !== password.value) {
-    // User exists but password is incorrect
-    if (!passwordLabel.querySelector("span")) {
-      // Insert the error message inside the label only if it does not exist
-      passwordLabel.appendChild(
-        showErrorMessages("*Password is incorrect", password)
-      );
+      // User exists but password is incorrect
+      showErrorMessages("*Password is incorrect.", password, passwordLabel);
     }
   } else {
-    if (!emailLabel.querySelector("span")) {
-      // Insert the error message inside the label only if it does not exist
-      emailLabel.appendChild(
-        showErrorMessages("*User does not exist. Please sign up.", email)
-      );
-    }
+    // User does not exist
+    showErrorMessages(
+      "*User does not exist. Please sign up.",
+      email,
+      emailLabel
+    );
   }
 }
 signInButton.addEventListener("click", checkUserCredentials);
@@ -205,66 +190,59 @@ function addUser(event) {
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email.value)) {
-    if (!emailLabel.querySelector("span")) {
-      emailLabel.appendChild(
-        showErrorMessages("*Please enter a valid email address.", email)
-      );
-    }
+    showErrorMessages(
+      "*Please enter a valid email address.",
+      email,
+      emailLabel
+    );
     return;
   }
   if (!Password.value) {
-    if (!passwordLabel.querySelector("span")) {
-      passwordLabel.appendChild(
-        showErrorMessages("*Please enter password.", Password)
-      );
-    }
+    showErrorMessages("*Please enter password.", Password, passwordLabel);
     return;
   }
   if (Password.value.length < 8) {
-    if (!passwordLabel.querySelector("span")) {
-      passwordLabel.appendChild(
-        showErrorMessages("*Password must be at least 8 digit.", Password)
-      );
-    }
+    showErrorMessages(
+      "*Password must be at least 8 characters long.",
+      Password,
+      passwordLabel
+    );
     return;
   }
   if (!email.value) {
-    if (!emailLabel.querySelector("span")) {
-      emailLabel.appendChild(showErrorMessages("*Please enter email.", email));
-    }
+    showErrorMessages("*Please enter email.", email, emailLabel);
     return;
   }
   if (Password.value !== confirmPassword.value) {
-    if (!confirmPasswordLabel.querySelector("span")) {
-      confirmPasswordLabel.appendChild(
-        showErrorMessages("*Passwords do not match.", confirmPassword)
-      );
-    }
+    showErrorMessages(
+      "*Passwords do not match. Please re-enter.",
+      confirmPassword,
+      confirmPasswordLabel
+    );
     return;
   }
-  // const getimage = signUpForm.getElementById("image");
+  const getimage = document.getElementById("image-url");
   if (localStorage.getItem(email.value)) {
-    if (!emailLabel.querySelector("span")) {
-      emailLabel.appendChild(
-        showErrorMessages("*User already exists. Please sign in.", email)
-      );
-    }
+    showErrorMessages(
+      "*User already exists. Please sign in.",
+      email,
+      emailLabel
+    );
   } else {
-    // let imagebase64 = "";
-    // getimage.addEventListener("change", function () {
-    // const reader = new FileReader();
-    // reader.addEventListener("load", function () {
-    //   imagebase64 = reader.result;
-    // });
-    // reader.readAsDataURL(getimage.files[0]);
-    // });
+    let imagebase64 = "";
+    getimage.addEventListener("change", function () {
+      const reader = new FileReader();
+      reader.addEventListener("load", function () {
+        imagebase64 = reader.result;
+      });
+      reader.readAsDataURL(getimage.files[0]);
+    });
 
-    // const userData = {
-    //   password: Password,
-    //   image: imagebase64
-    // };
-    // localStorage.setItem(email, JSON.stringify(userData));
-    localStorage.setItem(email.value, Password.value);
+    const userData = {
+      password: Password.value,
+      image: imagebase64,
+    };
+    localStorage.setItem(email.value, JSON.stringify(userData));
     alert("User registered successfully.");
     goSignIn.click(); // Move to sign-in form after successful registration
   }
