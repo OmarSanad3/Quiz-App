@@ -45,6 +45,6 @@ function startQuiz() {
 // }, 2000);
 
 /* Get the btn that will start the quiz */
-// switchingObj.startQuizBtn.addEventListener("click", () => {
-//   startQuiz();
-// });
+switchingObj.startQuizBtn.addEventListener("click", () => {
+  startQuiz();
+});
