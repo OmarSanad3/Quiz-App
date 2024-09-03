@@ -34,10 +34,6 @@ function handleDisabledBtns() {
 
 handleDisabledBtns();
 
-submitBtn.addEventListener("click", () => {
-  quiz.calculateScore();
-});
-
 /* render the first question */
 quiz.renderQuestion();
 
@@ -50,4 +46,8 @@ nextBtn.addEventListener("click", () => {
 prevBtn.addEventListener("click", () => {
   quiz.prevQuestion();
   handleDisabledBtns();
+});
+
+submitBtn.addEventListener("click", () => {
+  quiz.calculateScore();
 });
