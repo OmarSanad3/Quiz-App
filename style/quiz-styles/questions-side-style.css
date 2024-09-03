@@ -8,50 +8,6 @@
   margin-bottom: 50px;
 }
 
-progress {
-  width: 80%;
-  height: 20px;
-  margin: 20px 8px;
-  position: absolute;
-  top: -140px;
-  left: 50%;
-  transform: translateX(-50%);
-
-  /* bar in fireforx */
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: var(--primary-color);
-  border-radius: 25px;
-  border: none;
-}
-
-/* bar in other browsers */
-progress::-webkit-progress-bar {
-  background-color: var(--primary-color);
-  border-radius: 25px;
-}
-
-/* color for other browsers */
-progress::-webkit-progress-value {
-  background-color: var(--secondary-color);
-  border-radius: 25px;
-  transition: all 0.3s ease-in;
-}
-
-/* color for firefox */
-progress::-moz-progress-bar {
-  background-color: var(--secondary-color);
-  border-radius: 25px;
-  transition: all 0.3s ease-in;
-}
-
-@media (max-width: 768px) {
-  progress {
-    width: 65%;
-    top: -80px;
-  }
-}
-
 #quiz-container .content .questions-side .question-box {
   backdrop-filter: blur(15px);
   border: 3px solid var(--primary-color);
@@ -63,6 +19,19 @@ progress::-moz-progress-bar {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  transition: all 0.5s ease-in-out 0.5s;
+  -webkit-transition: all 0.5s ease-in-out 0.5s;
+  -moz-transition: all 0.5s ease-in-out 0.5s;
+  -ms-transition: all 0.5s ease-in-out 0.5s;
+  -o-transition: all 0.5s ease-in-out 0.5s;
+}
+
+#quiz-container .content .questions-side .question-box.hide {
+  transform: translateY(200%);
+  -webkit-transform: translateY(200%);
+  -moz-transform: translateY(200%);
+  -ms-transform: translateY(200%);
+  -o-transform: translateY(200%);
 }
 
 #quiz-container .content .questions-side .question-box .question {

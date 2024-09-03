@@ -1,37 +1,46 @@
-const closeSideBarBtn = document.querySelector(
-  "#quiz-container #close-side-bar"
-);
-const openSideBarBtn = document.querySelector("#quiz-container #open-side-bar");
-const sideBar = document.querySelector("#quiz-container .content .side-bar");
+const SideBarObj = {
+  closeSideBarBtn: document.querySelector("#quiz-container #close-side-bar"),
+  openSideBarBtn: document.querySelector("#quiz-container #open-side-bar"),
+  sideBar: document.querySelector("#quiz-container .side-bar"),
+  prgBar: document.querySelector("#quiz-container #questions-progress"),
+};
 
 function handleSideBar() {
   if (window.innerWidth > 768) {
-    if (sideBar.classList.contains("hide")) {
-      sideBar.classList.remove("hide");
-    }
+    SideBarObj.sideBar.classList.remove("is-hidden");
   } else {
-    if (!sideBar.classList.contains("hide")) {
-      sideBar.classList.add("hide");
-    }
+    SideBarObj.sideBar.classList.add("is-hidden");
+    SideBarObj.openSideBarBtn.classList.remove("is-hidden");
+    SideBarObj.sideBar.style["transition-delay"] = "0s";
   }
 }
 
-if (sideBar !== null) {
+if (SideBarObj.sideBar !== null) {
   handleSideBar();
 }
 
-if (closeSideBarBtn !== null) {
-  closeSideBarBtn.addEventListener("click", () => {
-    sideBar.classList.add("hide");
+if (SideBarObj.closeSideBarBtn !== null) {
+  SideBarObj.closeSideBarBtn.addEventListener("click", () => {
+    SideBarObj.sideBar.style["transition-delay"] = "0s";
+    SideBarObj.sideBar.classList.add("is-hidden");
+    SideBarObj.openSideBarBtn.classList.remove("is-hidden");
   });
 }
 
-if (openSideBarBtn !== null) {
-  openSideBarBtn.addEventListener("click", () => {
-    sideBar.classList.remove("hide");
+if (SideBarObj.openSideBarBtn !== null) {
+  SideBarObj.openSideBarBtn.addEventListener("click", () => {
+    SideBarObj.sideBar.style["transition-delay"] = "0s";
+    SideBarObj.sideBar.classList.remove("is-hidden");
+    SideBarObj.openSideBarBtn.classList.add("is-hidden");
   });
+}
+
+function setTransitionDelayToZero() {
+  SideBarObj.sideBar.style["transition-delay"] = "0s";
+  SideBarObj.openSideBarBtn.style["transition-delay"] = "0s";  
 }
 
 window.addEventListener("resize", () => {
+  setTransitionDelayToZero();
   handleSideBar();
 });
