@@ -217,7 +217,7 @@ function addUser(event) {
   }
   if (Password.value !== confirmPassword.value) {
     showErrorMessages(
-      "*Passwords do not match. Please re-enter.",
+      "*Passwords don't match.",
       confirmPassword,
       confirmPasswordLabel
     );
@@ -237,7 +237,11 @@ function addUser(event) {
       image: imagebase64,
     };
     localStorage.setItem(email.value, JSON.stringify(userData));
-    alert("User registered successfully.");
+    Swal.fire({
+      title: "You registered successfully.",
+      text: "Please sign in to continue.",
+      icon: "success"
+    });
     goSignIn.click(); // Move to sign-in form after successful registration
   }
 }
