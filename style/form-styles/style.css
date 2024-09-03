@@ -74,6 +74,7 @@
   -ms-transform: translate(30%, 100%); /* IE 9 */
   position: absolute;
   z-index: 5;
+  gap : 30px;
 }
 
 #form-container .success-img h1 {
@@ -109,7 +110,7 @@
 }
 
 #form-container .success-img img {
-  height: 60%;
+  height: 40%;
 }
 
 #form-container .sign-up-img img {

@@ -62,7 +62,7 @@ function showSuccessPageBigScreen(event) {
 
   let showSuccessImg = cover.querySelector(".success-img").style;
   showSuccessImg.transitionDelay = "0.8s";
-  showSuccessImg.transform = "translate(30%,-200%)";
+  showSuccessImg.transform = "translate(20%,-200%)";
 }
 
 /* to handle transition in mobile screens to show successful page */
