@@ -1,5 +1,5 @@
 export default class Quiz {
-  constructor(questions, questionDom, answersDom, prgBar) {
+  constructor(questions, questionDom, answersDom, prgBar, timerDom) {
     this.questions = questions;
     this.score = 0;
     this.currentQuestionIndex = 0;
@@ -7,13 +7,37 @@ export default class Quiz {
     this.isLastQuestion = false;
     this.questionDom = questionDom;
     this.answersDom = answersDom;
+    this.timerDom = timerDom;
     this.prgBar = prgBar;
     this.userAnswers = {};
+  }
+
+  startTimer() {
+    let time = 60 * 5 * 1000;
+    const timer = setInterval(() => {
+      time -= 1000;
+      let minutes = Math.floor(time / 60000);
+      minutes = minutes < 10 ? `0${minutes}` : minutes;
+      let seconds = Math.floor((time % 60000) / 1000);
+      seconds = seconds < 10 ? `0${seconds}` : seconds;
+      this.timerDom.textContent = `${minutes}:${seconds}`;
+
+      if (time <= 0) {
+        clearInterval(timer);
+        
+        this._quizTimeout();
+        this.calculateScore();
+      }
+    }, 1000);
   }
 
   checkAnswer(answerIndex) {
     this.userAnswers[this.currentQuestionIndex] = answerIndex;
     this.renderQuestion();
+  }
+
+  _quizTimeout() {
+    // render the screen of the quiz time out
   }
 
   _handleProgressBar() {
