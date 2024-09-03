@@ -1,6 +1,7 @@
 import Quiz from "./quiz-class.js";
 import QUESTIONS from "../data/QUESTIONS_JS.js";
 import selectRandomQuestions from "../util/selectRandomQuestions.js";
+import { passQuizInstance } from "./start-timer.js";
 
 /* Access DOM Elements */
 const question = document.querySelector("#quiz-container #question");
@@ -9,12 +10,30 @@ const nextBtn = document.querySelector("#quiz-container #nextBtn");
 const prevBtn = document.querySelector("#quiz-container #prevBtn");
 const prgBar = document.querySelector("#quiz-container #questions-progress");
 const submitBtn = document.querySelector("#quiz-container #submit-quiz");
+const timerElement = document.querySelector("#quiz-container #timer-element");
+const savedQuestionsContainer = document.querySelector(
+  "#quiz-container .saved-questions"
+);
+const saveQuestionBtn = document.querySelector(
+  "#quiz-container #save-question-btn"
+);
+const numOfSavedQuestionsElement = document.querySelector(
+  "#quiz-container #num-of-saved-question"
+);
 
 /* Select only 10 questions randomly */
 const selectedQuestions = selectRandomQuestions(QUESTIONS, 10);
 
 /* create a quiz instance */
-const quiz = new Quiz(selectedQuestions, question, answers, prgBar);
+const quiz = new Quiz(
+  selectedQuestions,
+  question,
+  answers,
+  prgBar,
+  timerElement,
+  savedQuestionsContainer,
+  numOfSavedQuestionsElement
+);
 
 /* converting nodelist to array */
 const answersArr = Array.from(answers);
@@ -51,3 +70,10 @@ prevBtn.addEventListener("click", () => {
 submitBtn.addEventListener("click", () => {
   quiz.calculateScore();
 });
+
+saveQuestionBtn.addEventListener("click", () => {
+  quiz.toggleSaveQuestion();
+});
+
+/* Pass Start Timer Function */
+passQuizInstance(quiz);

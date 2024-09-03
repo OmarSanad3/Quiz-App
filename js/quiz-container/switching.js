@@ -1,3 +1,5 @@
+import { triggerStartTimer } from "./start-timer.js";
+
 const switchingObj = {
   sideBar: document.querySelector("#quiz-container .side-bar"),
   prgBar: document.querySelector("#quiz-container #questions-progress"),
@@ -28,7 +30,7 @@ function displayOpenSideBarBtn() {
 }
 
 function startQuiz() {
-  switchingObj.formsContainer.style.display = "none";
+  // switchingObj.formsContainer.style.display = "none";
   switchingObj.quizContainerContent.style.transform = "translateY(0)";
   console.log(switchingObj.quizContainerContent);
   
@@ -38,6 +40,7 @@ function startQuiz() {
   displayOpenSideBarBtn();
 
   /* Start Quiz Timer */
+  triggerStartTimer();
 }
 
 // setTimeout(() => {

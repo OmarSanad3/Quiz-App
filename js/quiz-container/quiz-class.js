@@ -1,5 +1,13 @@
 export default class Quiz {
-  constructor(questions, questionDom, answersDom, prgBar) {
+  constructor(
+    questions,
+    questionDom,
+    answersDom,
+    prgBar,
+    timerDom,
+    savedQuestionsContainerDom,
+    numOfSavedQuestionsElementDom
+  ) {
     this.questions = questions;
     this.score = 0;
     this.currentQuestionIndex = 0;
@@ -7,13 +15,71 @@ export default class Quiz {
     this.isLastQuestion = false;
     this.questionDom = questionDom;
     this.answersDom = answersDom;
+    this.timerDom = timerDom;
     this.prgBar = prgBar;
+    this.savedQuestionsContainerDom = savedQuestionsContainerDom;
+    this.numOfSavedQuestionsElementDom = numOfSavedQuestionsElementDom;
     this.userAnswers = {};
+    this.savedQuestions = [];
+  }
+
+  startTimer() {
+    let time = 60 * 5 * 1000;
+    const timer = setInterval(() => {
+      time -= 1000;
+      let minutes = Math.floor(time / 60000);
+      minutes = minutes < 10 ? `0${minutes}` : minutes;
+      let seconds = Math.floor((time % 60000) / 1000);
+      seconds = seconds < 10 ? `0${seconds}` : seconds;
+      this.timerDom.textContent = `${minutes}:${seconds}`;
+
+      if (time <= 0) {
+        clearInterval(timer);
+
+        this._quizTimeout();
+        this.calculateScore();
+      }
+    }, 1000);
+  }
+
+  _goToQuestion(index) {
+    this.currentQuestionIndex = index;
+    this.renderQuestion();
+  }
+
+  toggleSaveQuestion() {
+    if (!this.savedQuestions.includes(this.currentQuestionIndex))
+      this.savedQuestions.push(this.currentQuestionIndex);
+    else
+      this.savedQuestions = this.savedQuestions.filter(
+        (index) => index !== this.currentQuestionIndex
+      );
+
+    this.renderSavedQuestions();
+  }
+
+  renderSavedQuestions() {
+    const listOfBtns = [];
+    this.savedQuestions.sort((a, b) => a - b);
+    for (const index of this.savedQuestions) {
+      listOfBtns.push(
+        `<button onclick="this._goToQuestion(${index})">Question ${
+          index + 1
+        }</button>`
+      );
+    }
+    this.savedQuestionsContainerDom.innerHTML = listOfBtns.join("");
+
+    this.numOfSavedQuestionsElementDom.textContent = this.savedQuestions.length;
   }
 
   checkAnswer(answerIndex) {
     this.userAnswers[this.currentQuestionIndex] = answerIndex;
     this.renderQuestion();
+  }
+
+  _quizTimeout() {
+    // render the screen of the quiz time out
   }
 
   _handleProgressBar() {
@@ -30,6 +96,7 @@ export default class Quiz {
   renderQuestion() {
     this._handleProgressBar();
     this._handleFirstOrLastQuestion();
+    this.renderSavedQuestions();
 
     this.questionDom.innerHTML = `
       <h3>Question ${this.currentQuestionIndex + 1}</h3>
