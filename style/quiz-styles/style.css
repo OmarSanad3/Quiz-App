@@ -1,10 +1,6 @@
 #quiz-container {
   height: 100%;
-  transition: all 0.5 ease-in-out;
-  -webkit-transition: all 0.5 ease-in-out;
-  -moz-transition: all 0.5 ease-in-out;
-  -ms-transition: all 0.5 ease-in-out;
-  -o-transition: all 0.5 ease-in-out;
+  overflow: hidden;
 }
 
 #quiz-container .content {
@@ -18,4 +14,10 @@
   -moz-transition: all 0.5s linear;
   -ms-transition: all 0.5s linear;
   -o-transition: all 0.5s linear;
+
+  transform: translateY(200%);
+  -webkit-transform: translateY(200%);
+  -moz-transform: translateY(200%);
+  -ms-transform: translateY(200%);
+  -o-transform: translateY(200%);
 }
