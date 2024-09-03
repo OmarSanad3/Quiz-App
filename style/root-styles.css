@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --primary-color: #3b60f6;
+  --secondary-color: #7daefd;
+  --background-body: #e6ebf5ff;
+  --button-color: #1d1463ff;
+  --sub-title-color: #c0bfc9ff;
+}
+body {
+  background-color: var(--background-body);
+  /* background: linear-gradient(to right, #3B60F6, #7DAEFD); */
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+}
