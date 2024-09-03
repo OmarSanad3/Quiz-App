@@ -84,7 +84,11 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
 }
 
 #quiz-container .content .side-bar .user-info button.logout:hover {
@@ -131,7 +135,11 @@
   border-radius: 25px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
 }
 
 #quiz-container .content .side-bar .timer-and-saved-questions .saved-questions button:hover {
@@ -156,7 +164,11 @@
   border-radius: 25px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
   width: 90%;
 }
 
