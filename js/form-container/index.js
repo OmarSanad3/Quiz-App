@@ -7,6 +7,12 @@ const goSignUp = signInForm.querySelector("a");
 const goSignIn = signUpForm.querySelector("a");
 
 const cover = DOM.querySelector(".cover");
+const userData = {};
+
+document.querySelector(".custom-file-label").addEventListener("click", function (e) {
+  e.preventDefault();
+  document.getElementById("image-url").click();
+});
 
 /* go to sign up form */
 goSignUp.addEventListener("click", function (event) {
@@ -43,9 +49,6 @@ goSignIn.addEventListener("click", function (event) {
   let toggleCover2 = cover.querySelector(".sign-up-img").style;
   toggleCover2.transform = "translateY(-210%)";
 });
-
-/* Button to show starting page */
-const signInButton = DOM.querySelector(".sign-in button");
 
 /* this function work in big screen only to show successful page */
 function showSuccessPageBigScreen(event) {
@@ -155,19 +158,9 @@ function checkUserCredentials(event) {
   }
 }
 
+/* Button to show starting page */
+const signInButton = DOM.querySelector(".sign-in button");
 signInButton.addEventListener("click", checkUserCredentials);
-
-function processImage(ImageUrl) {
-  let imagebase64 = "";
-  ImageUrl.addEventListener("change", function () {
-    const reader = new FileReader();
-    reader.addEventListener("load", function () {
-      imagebase64 = reader.result;
-    });
-    reader.readAsDataURL(ImageUrl.files[0]);
-  });
-  return imagebase64;
-}
 
 /* Add user to local storage when sign up*/
 function addUser(event) {
@@ -223,7 +216,6 @@ function addUser(event) {
     );
     return;
   }
-  const getimage = document.getElementById("image-url");
   if (localStorage.getItem(email.value)) {
     showErrorMessages(
       "*User already exists. Please sign in.",
@@ -231,12 +223,7 @@ function addUser(event) {
       emailLabel
     );
   } else {
-    let imagebase64 = processImage(getimage);
-    const userData = {
-      password: Password.value,
-      image: imagebase64,
-    };
-    localStorage.setItem(email.value, JSON.stringify(userData));
+    userData.password = Password.value;
     Swal.fire({
       title: "You registered successfully.",
       text: "Please sign in to continue.",
@@ -244,10 +231,23 @@ function addUser(event) {
     });
     goSignIn.click(); // Move to sign-in form after successful registration
   }
+  fetchImage(email);
 }
 
 const signUpButton = signUpForm.querySelector("button");
-signUpButton.addEventListener("click", addUser);
+
+signUpButton.addEventListener("click",  addUser );
+
+function fetchImage(email) {
+  const getimage = document.getElementById("image-url");
+  const reader = new FileReader();
+  reader.onloadend = function () {
+    userData.image = reader.result;
+    localStorage.setItem(email.value, JSON.stringify(userData));
+    console.log(userData);
+  };
+  reader.readAsDataURL(getimage.files[0]);
+}
 
 /* go to quiz page */
 const goQuiz = DOM.querySelector(".success-img button");

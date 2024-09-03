@@ -10,6 +10,7 @@
   --secondary-color: #7DAEFD;
   --background-body: #e6ebf5ff;
   --button-color: #1d1463ff;
+  --sub-title-color: #635f87ff; 
 }
 
 body {
@@ -21,3 +22,4 @@ body {
   background-attachment: fixed;
   background-size: cover;
   overflow-x: hidden;
+}
