@@ -44,10 +44,10 @@ goSignIn.addEventListener("click", function (event) {
   toggleCover2.transform = "translateY(-210%)";
 });
 
-/* show starting page */
+/* Button to show starting page */
 const signInButton = DOM.querySelector(".sign-in button");
 
-/* this function work in big screen only */
+/* this function work in big screen only to show successful page */
 function showSuccessPageBigScreen(event) {
   event.preventDefault();
 
@@ -65,7 +65,7 @@ function showSuccessPageBigScreen(event) {
   showSuccessImg.transform = "translate(30%,-200%)";
 }
 
-/* to handle transition in mobile screens */
+/* to handle transition in mobile screens to show successful page */
 function showSuccessPageMobile(event) {
   event.preventDefault();
   console.log("mobile");
@@ -86,8 +86,6 @@ function showSuccessPageMobile(event) {
   showSuccessImg.transform = "translate(0%,-200%)";
 }
 
-const InMobileScreen = window.matchMedia("(max-width: 768px)");
-
 function showErrorMessages(messages, inputBox, label) {
   if (!label.querySelector("span")) {
     const error = document.createElement("span");
@@ -105,10 +103,13 @@ function showErrorMessages(messages, inputBox, label) {
 }
 
 function removeErrorMessages(lable, inputBox) {
-  inputBox.style.border = "1px solid rgb(171, 171, 171)";
-  if (lable.querySelector("span")) lable.querySelector("span").remove();
+  inputBox.addEventListener("input", function () {
+    inputBox.style.border = "1px solid rgb(171, 171, 171)";
+    if (lable.querySelector("span")) lable.querySelector("span").remove();
+  });
 }
 
+const InMobileScreen = window.matchMedia("(max-width: 768px)");
 /* Check if user exists in local storage */
 function checkUserCredentials(event) {
   event.preventDefault();
@@ -119,20 +120,14 @@ function checkUserCredentials(event) {
 
   const storedPassword = localStorage.getItem(email.value); // string of user data
 
-  email.addEventListener("input", function () {
-    // Remove error message when user starts typing
-    removeErrorMessages(emailLabel, email);
-  });
-  password.addEventListener("input", function () {
-    // Remove error message when user starts typing
-    removeErrorMessages(passwordLabel, password);
-  });
+  // Remove error message when user starts typing
+  removeErrorMessages(emailLabel, email);
+  // Remove error message when user starts typing
+  removeErrorMessages(passwordLabel, password);
 
   if (storedPassword) {
     // User exists
     const userData = JSON.parse(storedPassword); // convert string to object
-    console.log(userData.password);
-    console.log(password.value);
     if (userData.password === password.value) {
       // Set the profile image
       if (userData.image !== "") {
@@ -159,7 +154,20 @@ function checkUserCredentials(event) {
     );
   }
 }
+
 signInButton.addEventListener("click", checkUserCredentials);
+
+function processImage(ImageUrl) {
+  let imagebase64 = "";
+  ImageUrl.addEventListener("change", function () {
+    const reader = new FileReader();
+    reader.addEventListener("load", function () {
+      imagebase64 = reader.result;
+    });
+    reader.readAsDataURL(ImageUrl.files[0]);
+  });
+  return imagebase64;
+}
 
 /* Add user to local storage when sign up*/
 function addUser(event) {
@@ -175,18 +183,12 @@ function addUser(event) {
     "label[for='confirm-password']"
   );
 
-  email.addEventListener("input", function () {
-    // Remove error message when user starts typing
-    removeErrorMessages(emailLabel, email);
-  });
-  Password.addEventListener("input", function () {
-    // Remove error message when user starts typing
-    removeErrorMessages(passwordLabel, Password);
-  });
-  confirmPassword.addEventListener("input", function () {
-    // Remove error message when user starts typing
-    removeErrorMessages(confirmPasswordLabel, confirmPassword);
-  });
+  // Remove error message when user starts typing
+  removeErrorMessages(emailLabel, email);
+  // Remove error message when user starts typing
+  removeErrorMessages(passwordLabel, Password);
+  // Remove error message when user starts typing
+  removeErrorMessages(confirmPasswordLabel, confirmPassword);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email.value)) {
@@ -229,15 +231,7 @@ function addUser(event) {
       emailLabel
     );
   } else {
-    let imagebase64 = "";
-    getimage.addEventListener("change", function () {
-      const reader = new FileReader();
-      reader.addEventListener("load", function () {
-        imagebase64 = reader.result;
-      });
-      reader.readAsDataURL(getimage.files[0]);
-    });
-
+    let imagebase64 = processImage(getimage);
     const userData = {
       password: Password.value,
       image: imagebase64,
