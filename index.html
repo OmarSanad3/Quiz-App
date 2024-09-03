@@ -1,22 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style/form-styles/style.css" />
-    <link rel="stylesheet" href="style/root-styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    />
-    <link rel="icon" href="assets/letter-q_6819264.png" type="image/png" />
-    <!-- to add sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style/form-styles/style.css" />
+	<link rel="stylesheet" href="style/root-styles.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+	<link rel="icon" href="assets/letter-q_6819264.png" type="image/png" />
+	<!-- to add sweetalert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 	<!-- <link rel="stylesheet" href="syle.css"> -->
 	<link rel="stylesheet" href="style/quiz-styles/style.css">
 	<link rel="stylesheet" href="style/quiz-styles/questions-side-style.css">
@@ -34,87 +28,81 @@
 </head>
 
 <body>
-	<!--  -->
 	<div id="form-container">
-    <title>Quizzo</title>
-  </head>
+		<!-- the image and blue background -->
+		<div class="cover">
+			<div class="sign-in-img">
+				<h1>Start Your Journey.</h1>
+				<p>Quizzo is a platform that allows you to take quizzes.</p>
+				<img src="assets/mail-woman.png" alt="" />
+			</div>
+			<div class="sign-up-img">
+				<h1>Sign Up Now</h1>
+				<p>welcome to Quizzo, a platform that allows you to take quizzes.</p>
+				<img src="assets/Mai-sent-cuate.png" alt="" />
+			</div>
+			<!-- successful page  -->
+			<div class="success-img">
+				<h1>Success!</h1>
+				<img src="assets/Live collaboration-rafiki.png" alt="" />
+				<p>Thank you for signing up. You can now take quizzes.</p>
+				<button id="start-quiz-btn">Process</button>
+			</div>
+		</div>
+		<!-- handle two forms -->
+		<div class="form">
+			<form action="" method="post" class="sign-in">
+				<p>Don't have an account? <a href="#">Sign Up</a></p>
+				<div class="input">
+					<label for="email">E-Mail</label>
+					<input type="email" name="email" id="email" required />
+					<i class="fa-regular fa-envelope"></i>
+				</div>
+				<div class="input">
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" required />
+					<i class="fa-solid fa-lock"></i>
+				</div>
 
-  <body>
-    <div id="form-container">
-      <!-- the image and blue background -->
-      <div class="cover">
-        <div class="sign-in-img">
-          <h1>Start Your Journey.</h1>
-          <p>Quizzo is a platform that allows you to take quizzes.</p>
-          <img src="assets/mail-woman.png" alt="" />
-        </div>
-        <div class="sign-up-img">
-          <h1>Sign Up Now</h1>
-          <p>welcome to Quizzo, a platform that allows you to take quizzes.</p>
-          <img src="assets/Mai-sent-cuate.png" alt="" />
-        </div>
-        <!-- successful page  -->
-        <div class="success-img">
-          <h1>Success!</h1>
-          <img src="assets/Live collaboration-rafiki.png" alt="" />
-          <p>Thank you for signing up. You can now take quizzes.</p>
-          <button>Process</button>
-        </div>
-      </div>
-      <!-- handle two forms -->
-      <div class="form">
-        <form action="" method="post" class="sign-in">
-          <p>Don't have an account? <a href="#">Sign Up</a></p>
-          <div class="input">
-            <label for="email">E-Mail</label>
-            <input type="email" name="email" id="email" required />
-            <i class="fa-regular fa-envelope"></i>
-          </div>
-          <div class="input">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" required />
-            <i class="fa-solid fa-lock"></i>
-          </div>
+				<button type="submit">SIGN IN</button>
+				<p>by clicking sign in you agree to our terms and conditions</p>
+			</form>
 
-          <button type="submit">SIGN IN</button>
-          <p>by clicking sign in you agree to our terms and conditions</p>
-        </form>
+			<form action="" method="post" class="sign-up">
+				<p>Already have an account? <a href="#">Sign In</a></p>
+				<div class="input">
+					<label for="text">User name</label>
+					<input type="text" name="username" id="set-username" required />
+					<i class="fa-regular fa-user"></i>
+				</div>
+				<div class="input">
+					<label for="file" class="custom-file-label">Add Profile Picture</label>
+					<input type="file" name="file" id="image-url" />
+				</div>
+				<div class="input">
+					<label for="email">E-Mail</label>
+					<input type="email" name="email" id="set-email" required />
+					<i class="fa-regular fa-envelope"></i>
+				</div>
 
-        <form action="" method="post" class="sign-up">
-          <p>Already have an account? <a href="#">Sign In</a></p>
-          <div class="input">
-            <label for="text">User name</label>
-            <input type="text" name="username" id="set-username" required />
-            <i class="fa-regular fa-user"></i>
-          </div>
-          <div class="input">
-            <label for="file" class="custom-file-label"
-              >Add Profile Picture</label
-            >
-            <input type="file" name="file" id="image-url" />
-          </div>
-          <div class="input">
-            <label for="email">E-Mail</label>
-            <input type="email" name="email" id="set-email" required />
-            <i class="fa-regular fa-envelope"></i>
-          </div>
+				<div class="input">
+					<label for="set-password">Password</label>
+					<input type="password" name="password" id="set-password" required />
+					<i class="fa-solid fa-lock"></i>
+				</div>
+				<div class="input">
+					<label for="confirm-password">Confirm Password</label>
+					<input type="password" name="password" id="confirm-password" required />
+					<i class="fa-solid fa-lock"></i>
+				</div>
 
-          <div class="input">
-            <label for="set-password">Password</label>
-            <input type="password" name="password" id="set-password" required />
-            <i class="fa-solid fa-lock"></i>
-          </div>
-          <div class="input">
-            <label for="confirm-password">Confirm Password</label>
-            <input
-              type="password"
-              name="password"
-              id="confirm-password"
-              required
-            />
-            <i class="fa-solid fa-lock"></i>
-          </div>
-
+				<button type="submit">SIGN UP</button>
+			</form>
+		</div>
+	</div>
+	
+	<!-- ============================== Quiz Container ============================== -->
+	<div id="quiz-container">
 		<div class="content">
 			<progress class="hide" id="questions-progress" value="10" max="100">
 			</progress>
@@ -206,13 +194,9 @@
 			</div>
 
 		</div>
-	</div>
-          <button type="submit">SIGN UP</button>
-        </form>
-      </div>
-    </div>
 
-    <div id="quiz-container"></div>
-    <script src="js/form-container/index.js"></script>
-  </body>
+	</div>
+	<script src="js/form-container/index.js"></script>
+</body>
+
 </html>
