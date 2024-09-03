@@ -1,5 +1,13 @@
 export default class Quiz {
-  constructor(questions, questionDom, answersDom, prgBar, timerDom) {
+  constructor(
+    questions,
+    questionDom,
+    answersDom,
+    prgBar,
+    timerDom,
+    savedQuestionsContainerDom,
+    numOfSavedQuestionsElementDom
+  ) {
     this.questions = questions;
     this.score = 0;
     this.currentQuestionIndex = 0;
@@ -9,7 +17,10 @@ export default class Quiz {
     this.answersDom = answersDom;
     this.timerDom = timerDom;
     this.prgBar = prgBar;
+    this.savedQuestionsContainerDom = savedQuestionsContainerDom;
+    this.numOfSavedQuestionsElementDom = numOfSavedQuestionsElementDom;
     this.userAnswers = {};
+    this.savedQuestions = [];
   }
 
   startTimer() {
@@ -24,11 +35,42 @@ export default class Quiz {
 
       if (time <= 0) {
         clearInterval(timer);
-        
+
         this._quizTimeout();
         this.calculateScore();
       }
     }, 1000);
+  }
+
+  _goToQuestion(index) {
+    this.currentQuestionIndex = index;
+    this.renderQuestion();
+  }
+
+  toggleSaveQuestion() {
+    if (!this.savedQuestions.includes(this.currentQuestionIndex))
+      this.savedQuestions.push(this.currentQuestionIndex);
+    else
+      this.savedQuestions = this.savedQuestions.filter(
+        (index) => index !== this.currentQuestionIndex
+      );
+
+    this.renderSavedQuestions();
+  }
+
+  renderSavedQuestions() {
+    const listOfBtns = [];
+    this.savedQuestions.sort((a, b) => a - b);
+    for (const index of this.savedQuestions) {
+      listOfBtns.push(
+        `<button onclick="this._goToQuestion(${index})">Question ${
+          index + 1
+        }</button>`
+      );
+    }
+    this.savedQuestionsContainerDom.innerHTML = listOfBtns.join("");
+
+    this.numOfSavedQuestionsElementDom.textContent = this.savedQuestions.length;
   }
 
   checkAnswer(answerIndex) {
@@ -54,6 +96,7 @@ export default class Quiz {
   renderQuestion() {
     this._handleProgressBar();
     this._handleFirstOrLastQuestion();
+    this.renderSavedQuestions();
 
     this.questionDom.innerHTML = `
       <h3>Question ${this.currentQuestionIndex + 1}</h3>
