@@ -1,0 +1,226 @@
+/* ============================== Side bar Styles ============================== */
+#quiz-container .content .side-bar {
+  background-color: var(--primary-color);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 20px;
+  position: relative;
+  transition: all 0.5s ease-in-out 1s;
+  -webkit-transition: all 0.5s ease-in-out 1s;
+  -moz-transition: all 0.5s ease-in-out 1s;
+  -ms-transition: all 0.5s ease-in-out 1s;
+  -o-transition: all 0.5s ease-in-out 1s;
+}
+
+#quiz-container .content .side-bar.hide {
+  transform: translateX(300%);
+  -webkit-transform: translateX(300%);
+  -moz-transform: translateX(300%);
+  -ms-transform: translateX(300%);
+  -o-transform: translateX(300%);
+}
+
+#quiz-container .content .side-bar.is-hidden {
+  transform: translateX(300%);
+  -webkit-transform: translateX(300%);
+  -moz-transform: translateX(300%);
+  -ms-transform: translateX(300%);
+  -o-transform: translateX(300%);
+}
+
+@media (max-width: 768px) {
+  #quiz-container .content .side-bar {
+    min-height: 90%;
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+  }
+}
+
+/* ============================== Open & Close Side bar buttons ============================== */
+#quiz-container .content #open-side-bar {
+  position: absolute;
+  top: 65px;
+  right: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: all 0.5s ease-in-out 1s;
+  -webkit-transition: all 0.5s ease-in-out 1s;
+  -moz-transition: all 0.5s ease-in-out 1s;
+  -ms-transition: all 0.5s ease-in-out 1s;
+  -o-transition: all 0.5s ease-in-out 1s;
+}
+
+#quiz-container .content #open-side-bar.hide {
+  transform: translateX(300%);
+  -webkit-transform: translateX(300%);
+  -moz-transform: translateX(300%);
+  -ms-transform: translateX(300%);
+  -o-transform: translateX(300%);
+}
+
+#quiz-container .content #open-side-bar.is-hidden {
+  transform: translateX(300%);
+  -webkit-transform: translateX(300%);
+  -moz-transform: translateX(300%);
+  -ms-transform: translateX(300%);
+  -o-transform: translateX(300%);
+}
+
+
+#quiz-container .content .side-bar #close-side-bar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  #quiz-container .content .side-bar #close-side-bar {
+    display: block;
+  }
+}
+
+/* ============================== User Info Section ============================== */
+
+#quiz-container .content .side-bar .user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+#quiz-container .content .side-bar .user-info .user-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+#quiz-container .content .side-bar .user-info h3 {
+  color: white;
+}
+
+#quiz-container .content .side-bar .user-info button.logout {
+  background-color: var(--button-color);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+
+#quiz-container .content .side-bar .user-info button.logout:hover {
+  background-color: white;
+  color: var(--button-color);
+  transform: scale(1.05);
+}
+
+/* ============================== Timer and Saved Questions ============================== */
+
+#quiz-container .content .side-bar .timer-and-saved-questions .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  padding: 20px;
+}
+
+#quiz-container .content .side-bar .timer-and-saved-questions .header .timer,
+#quiz-container .content .side-bar .timer-and-saved-questions .header .saved-questions-icon {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+}
+
+/* ============================== Saved Questions List Section ============================== */
+
+#quiz-container .content .side-bar .timer-and-saved-questions .saved-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+}
+
+#quiz-container .content .side-bar .timer-and-saved-questions .saved-questions button {
+  background-color: var(--button-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+}
+
+#quiz-container .content .side-bar .timer-and-saved-questions .saved-questions button:hover {
+  background-color: white;
+  color: var(--button-color);
+  transform: scale(1.05);
+}
+
+/* ============================== Submit Button Section ============================== */
+
+#quiz-container .content .side-bar .submit-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+#quiz-container .content .side-bar .submit-button button {
+  background-color: var(--button-color);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  width: 90%;
+}
+
+#quiz-container .content .side-bar .submit-button button:hover {
+  background-color: white;
+  color: var(--button-color);
+  transform: scale(1.05);
+}

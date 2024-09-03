@@ -1,103 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style/form-styles/style.css" />
-    <link rel="stylesheet" href="style/root-styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    />
-    <link rel="icon" href="assets/letter-q_6819264.png" type="image/png" />
-    <!-- to add sweetalert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <title>Quizzo</title>
-  </head>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style/form-styles/style.css" />
+	<link rel="stylesheet" href="style/root-styles.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+	<link rel="icon" href="assets/letter-q_6819264.png" type="image/png" />
+	<!-- to add sweetalert -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <body>
-    <div id="form-container">
-      <!-- the image and blue background -->
-      <div class="cover">
-        <div class="sign-in-img">
-          <h1>Start Your Journey.</h1>
-          <p>Quizzo is a platform that allows you to take quizzes.</p>
-          <img src="assets/mail-woman.png" alt="" />
-        </div>
-        <div class="sign-up-img">
-          <h1>Sign Up Now</h1>
-          <p>welcome to Quizzo, a platform that allows you to take quizzes.</p>
-          <img src="assets/Mai-sent-cuate.png" alt="" />
-        </div>
-        <!-- successful page  -->
-        <div class="success-img">
-          <h1>Are You Ready ?</h1>
-          <img src="assets/timer.png" alt="" />
-          <p> You can start quiz now , you have only <strong>5 minutes</strong> to complete it</p>
-          <button>Star Now</button>
-        </div>
-      </div>
-      <!-- handle two forms -->
-      <div class="form">
-        <form action="" method="post" class="sign-in">
-          <p>Don't have an account? <a href="#">Sign Up</a></p>
-          <div class="input">
-            <label for="email">E-Mail</label>
-            <input type="email" name="email" id="email" required />
-            <i class="fa-regular fa-envelope"></i>
-          </div>
-          <div class="input">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" required />
-            <i class="fa-solid fa-lock"></i>
-          </div>
+	<!-- <link rel="stylesheet" href="syle.css"> -->
+	<link rel="stylesheet" href="style/quiz-styles/style.css">
+	<link rel="stylesheet" href="style/quiz-styles/questions-side-style.css">
+	<link rel="stylesheet" href="style/quiz-styles/side-bar-style.css">
+	<link rel="stylesheet" href="style/quiz-styles/progress-bar-style.css">
+	<link rel="stylesheet" href="style/root-styles.css">
+	<link rel="stylesheet" href="style/icons/all.min.css">
+	<title>Quizzo</title>
 
-          <button type="submit">SIGN IN</button>
-          <p>by clicking sign in you agree to our terms and conditions</p>
-        </form>
+	<script src="./js/main.js" type="module" defer></script>
+	<script src="./js/quiz-container/side-bar-responsive.js" defer></script>
+	<script src="./js/quiz-container/index.js" defer type="module"></script>
+	<script src="./js/quiz-container/progress-bar-width.js" defer></script>
+	<script src="./js/quiz-container/switching.js" defer></script>
+</head>
 
-        <form action="" method="post" class="sign-up">
-          <p>Already have an account? <a href="#">Sign In</a></p>
-          <div class="input">
-            <label for="text">User name</label>
-            <input type="text" name="username" id="set-username" required />
-            <i class="fa-regular fa-user"></i>
-          </div>
-          <div class="input">
-            <label for="file" class="custom-file-label"
-              >Add Profile Picture</label
-            >
-            <input type="file" name="file" id="image-url" />
-          </div>
-          <div class="input">
-            <label for="email">E-Mail</label>
-            <input type="email" name="email" id="set-email" required />
-            <i class="fa-regular fa-envelope"></i>
-          </div>
+<body>
+	<div id="form-container">
+		<!-- the image and blue background -->
+		<div class="cover">
+			<div class="sign-in-img">
+				<h1>Start Your Journey.</h1>
+				<p>Quizzo is a platform that allows you to take quizzes.</p>
+				<img src="assets/mail-woman.png" alt="" />
+			</div>
+			<div class="sign-up-img">
+				<h1>Sign Up Now</h1>
+				<p>welcome to Quizzo, a platform that allows you to take quizzes.</p>
+				<img src="assets/Mai-sent-cuate.png" alt="" />
+			</div>
+			<!-- successful page  -->
+			<div class="success-img">
+				<h1>Are You Ready ?</h1>
+				<img src="assets/timer.png" alt="" />
+				<p> You can start quiz now , you have only <strong>5 minutes</strong> to complete it</p>
+				<button id="start-quiz-btn">Star Now</button>
+			</div>
+		</div>
+		<!-- handle two forms -->
+		<div class="form">
+			<form action="" method="post" class="sign-in">
+				<p>Don't have an account? <a href="#">Sign Up</a></p>
+				<div class="input">
+					<label for="email">E-Mail</label>
+					<input type="email" name="email" id="email" required />
+					<i class="fa-regular fa-envelope"></i>
+				</div>
+				<div class="input">
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" required />
+					<i class="fa-solid fa-lock"></i>
+				</div>
 
-          <div class="input">
-            <label for="set-password">Password</label>
-            <input type="password" name="password" id="set-password" required />
-            <i class="fa-solid fa-lock"></i>
-          </div>
-          <div class="input">
-            <label for="confirm-password">Confirm Password</label>
-            <input
-              type="password"
-              name="password"
-              id="confirm-password"
-              required
-            />
-            <i class="fa-solid fa-lock"></i>
-          </div>
+				<button type="submit">SIGN IN</button>
+				<p>by clicking sign in you agree to our terms and conditions</p>
+			</form>
 
-          <button type="submit">SIGN UP</button>
-        </form>
-      </div>
-    </div>
+			<form action="" method="post" class="sign-up">
+				<p>Already have an account? <a href="#">Sign In</a></p>
+				<div class="input">
+					<label for="text">User name</label>
+					<input type="text" name="username" id="set-username" required />
+					<i class="fa-regular fa-user"></i>
+				</div>
+				<div class="input">
+					<label for="file" class="custom-file-label">Add Profile Picture</label>
+					<input type="file" name="file" id="image-url" />
+				</div>
+				<div class="input">
+					<label for="email">E-Mail</label>
+					<input type="email" name="email" id="set-email" required />
+					<i class="fa-regular fa-envelope"></i>
+				</div>
 
-    <div id="quiz-container"></div>
-    <script src="js/form-container/index.js"></script>
-  </body>
+				<div class="input">
+					<label for="set-password">Password</label>
+					<input type="password" name="password" id="set-password" required />
+					<i class="fa-solid fa-lock"></i>
+				</div>
+				<div class="input">
+					<label for="confirm-password">Confirm Password</label>
+					<input type="password" name="password" id="confirm-password" required />
+					<i class="fa-solid fa-lock"></i>
+				</div>
+
+				<button type="submit">SIGN UP</button>
+			</form>
+		</div>
+	</div>
+	
+	<!-- ============================== Quiz Container ============================== -->
+	<div id="quiz-container">
+		<div class="content">
+			<progress class="hide" id="questions-progress" value="10" max="100">
+			</progress>
+
+			<div class="questions-side">
+				<div class="question-box hide">
+					<div class="question" id="question">
+						<h3>Question 1</h3>
+						<p>
+							What is the capital of France?
+						</p>
+					</div>
+
+					<div class="options">
+						<button class="option">
+							Paris
+						</button>
+						<button class="option">
+							London
+						</button>
+						<button class="option">
+							Berlin
+						</button>
+						<button class="option">
+							Madrid
+						</button>
+					</div>
+
+					<div class="controllers">
+						<button class="prev" id="prevBtn">
+							Previous
+						</button>
+						<button class="flag">
+							<i class="fa-solid fa-flag"></i>
+						</button>
+						<button class="next" id="nextBtn">
+							Next
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div id="open-side-bar" class="hide">
+				<i class="fa-solid fa-bars"></i>
+			</div>
+
+			<div class="side-bar hide">
+				<div id="close-side-bar">
+					<i class="fa-solid fa-times"></i>
+				</div>
+				<!-- User Information -->
+				<div class="user-info">
+					<img src="./assets/defualt_user.png" alt="user" class="user-photo">
+					<h3>Omar Sanad</h3>
+					<button class="logout">
+						logout
+					</button>
+				</div>
+
+				<!-- Saved Questions -->
+				<div class="timer-and-saved-questions">
+
+					<!-- timer and number of saved questions -->
+					<div class="header">
+						<div class="timer">
+							<i class="fa-solid fa-clock"></i>
+							<span>04:23</span>
+						</div>
+						<div class="saved-questions-icon">
+							<i class="fa-solid fa-bookmark"></i>
+							<span>3</span>
+						</div>
+					</div>
+
+					<!-- Saved Questions list -->
+					<div class="saved-questions">
+						<button>Question 1</button>
+						<button>Question 2</button>
+						<button>Question 3</button>
+					</div>
+
+				</div>
+				<!-- Submit Button -->
+				<div class="submit-button">
+					<button id="submit-quiz">
+						Submit
+					</button>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+	<script src="js/form-container/index.js"></script>
+</body>
+
 </html>

@@ -1,0 +1,23 @@
+#quiz-container {
+  height: 100%;
+  overflow: hidden;
+}
+
+#quiz-container .content {
+  overflow: hidden;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  position: relative;
+  transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -ms-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+
+  transform: translateY(200%);
+  -webkit-transform: translateY(200%);
+  -moz-transform: translateY(200%);
+  -ms-transform: translateY(200%);
+  -o-transform: translateY(200%);
+}
