@@ -240,7 +240,7 @@ function addUser(event) {
     Swal.fire({
       title: "You registered successfully.",
       text: "Please sign in to continue.",
-      icon: "success"
+      icon: "success",
     });
     goSignIn.click(); // Move to sign-in form after successful registration
   }
