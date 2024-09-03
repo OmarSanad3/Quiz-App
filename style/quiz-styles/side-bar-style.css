@@ -67,7 +67,7 @@
   padding: 20px;
 }
 
-#quiz-container .content .side-bar .user-info img {
+#quiz-container .content .side-bar .user-info .user-photo {
   width: 100px;
   height: 100px;
   border-radius: 50%;
