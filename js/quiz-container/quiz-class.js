@@ -197,8 +197,6 @@ export default class Quiz {
       timeIsOut: this.timeIsOut,
     };
 
-    console.log("resultsObject: ", resultsObject);
-
     return resultsObject;
   }
 }
