@@ -2,6 +2,7 @@ import Quiz from "./quiz-class.js";
 import QUESTIONS from "../data/QUESTIONS_JS.js";
 import selectRandomQuestions from "../util/selectRandomQuestions.js";
 import { passQuizInstance } from "./start-timer.js";
+import { passResultsObject, previewResults } from "../results-screen/results-screen.js"
 
 /* ==================== Access DOM Elements ==================== */
 const questionElement = document.querySelector("#quiz-container #question");
@@ -85,8 +86,8 @@ prevBtn.addEventListener("click", () => {
 });
 
 submitBtn.addEventListener("click", () => {
-  quiz.getResultObject();
-  /* go to results screen */
+  passResultsObject(quiz.getResultObject());
+  previewResults();
 });
 
 saveQuestionBtn.addEventListener("click", () => {
