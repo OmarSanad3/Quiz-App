@@ -147,6 +147,9 @@
     width: 100%;
     display: flex;
   }
+  #form-container .success-img img {
+    height: 30%;
+  }
 }
 /*___________________signIn and signUp page_____________________ */
 #form-container .form {
