@@ -30,9 +30,7 @@ function displayOpenSideBarBtn() {
 }
 
 function startQuiz() {
-  // switchingObj.formsContainer.style.display = "none";
   switchingObj.quizContainerContent.style.transform = "translateY(0)";
-  console.log(switchingObj.quizContainerContent);
   
   displayProgressBar();
   displaySideBar();

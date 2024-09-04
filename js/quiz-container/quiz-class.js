@@ -21,11 +21,12 @@ export default class Quiz {
     this.numOfSavedQuestionsElementDom = numOfSavedQuestionsElementDom;
     this.userAnswers = {};
     this.savedQuestions = [];
+    this.timerRef = null;
   }
 
   startTimer() {
     let time = 60 * 5 * 1000;
-    const timer = setInterval(() => {
+    this.timerRef = setInterval(() => {
       time -= 1000;
       let minutes = Math.floor(time / 60000);
       minutes = minutes < 10 ? `0${minutes}` : minutes;
@@ -34,15 +35,15 @@ export default class Quiz {
       this.timerDom.textContent = `${minutes}:${seconds}`;
 
       if (time <= 0) {
-        clearInterval(timer);
+        clearInterval(this.timerRef);
 
         this._quizTimeout();
-        this.calculateScore();
+        this._calculateScore();
       }
     }, 1000);
   }
 
-  _goToQuestion(index) {
+  goToQuestion(index) {
     this.currentQuestionIndex = index;
     this.renderQuestion();
   }
@@ -55,19 +56,21 @@ export default class Quiz {
         (index) => index !== this.currentQuestionIndex
       );
 
-    this.renderSavedQuestions();
+    this._renderSavedQuestions();
   }
 
-  renderSavedQuestions() {
+  _renderSavedQuestions() {
     const listOfBtns = [];
     this.savedQuestions.sort((a, b) => a - b);
+
     for (const index of this.savedQuestions) {
-      listOfBtns.push(
-        `<button onclick="this._goToQuestion(${index})">Question ${
-          index + 1
-        }</button>`
-      );
+      const btn = document.createElement("button");
+      btn.textContent = `Question ${index + 1}`;
+      btn.setAttribute("data-index", index);
+
+      listOfBtns.push(btn.outerHTML);
     }
+
     this.savedQuestionsContainerDom.innerHTML = listOfBtns.join("");
 
     this.numOfSavedQuestionsElementDom.textContent = this.savedQuestions.length;
@@ -93,16 +96,14 @@ export default class Quiz {
       this.currentQuestionIndex === this.questions.length - 1;
   }
 
-  renderQuestion() {
-    this._handleProgressBar();
-    this._handleFirstOrLastQuestion();
-    this.renderSavedQuestions();
-
+  _renderQuestion() {
     this.questionDom.innerHTML = `
-      <h3>Question ${this.currentQuestionIndex + 1}</h3>
-      <p>${this.questions[this.currentQuestionIndex].question}</p>
+    <h3>Question ${this.currentQuestionIndex + 1}</h3>
+    <p>${this.questions[this.currentQuestionIndex].question}</p>
     `;
+  }
 
+  _renderAnswers() {
     for (let i = 0; i < 4; i++) {
       this.answersDom[i].textContent =
         this.questions[this.currentQuestionIndex].answers[i];
@@ -114,13 +115,33 @@ export default class Quiz {
     }
   }
 
-  calculateScore() {
+  renderQuestion() {
+    this._handleProgressBar();
+    this._handleFirstOrLastQuestion();
+    this._renderSavedQuestions();
+    this._renderQuestion();
+    this._renderAnswers();
+  }
+
+  _calculateScore() {
+    this._stopTimer();
+
     this.score = 0;
     this.questions.forEach((question, i) => {
       if (question.correctAnswer === question.answers[this.userAnswers[i]])
         this.score++;
     });
     return this.score;
+  }
+
+  getResultObject() {
+    return {
+      question: this.questions.question,
+      answers: this.questions.answers,
+      userAnswers: this.userAnswers,
+      correctAnswers: this.questions.correctAnswer,
+      score: this.score,
+    };
   }
 
   nextQuestion() {
@@ -131,5 +152,9 @@ export default class Quiz {
   prevQuestion() {
     this.currentQuestionIndex--;
     this.renderQuestion();
+  }
+
+  _stopTimer() {
+    clearInterval(this.timerRef);
   }
 }

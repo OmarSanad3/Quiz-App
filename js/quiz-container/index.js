@@ -60,20 +60,35 @@ quiz.renderQuestion();
 nextBtn.addEventListener("click", () => {
   quiz.nextQuestion();
   handleDisabledBtns();
+  addEventListenersToSavedQuestions();
 });
 
 prevBtn.addEventListener("click", () => {
   quiz.prevQuestion();
   handleDisabledBtns();
+  addEventListenersToSavedQuestions();
 });
 
 submitBtn.addEventListener("click", () => {
-  quiz.calculateScore();
+  quiz.getResultObject();
+  /* go to results screen */
 });
 
 saveQuestionBtn.addEventListener("click", () => {
   quiz.toggleSaveQuestion();
+  addEventListenersToSavedQuestions();
 });
+
+function addEventListenersToSavedQuestions() {
+  const savedQuestions = savedQuestionsContainer.querySelectorAll("button");
+  
+  savedQuestions.forEach((btn, i) => {
+    const questionIndex = btn.getAttribute("data-index");
+    btn.addEventListener("click", () => {
+      quiz.goToQuestion(+questionIndex);
+    });
+  });
+}
 
 /* Pass Start Timer Function */
 passQuizInstance(quiz);
