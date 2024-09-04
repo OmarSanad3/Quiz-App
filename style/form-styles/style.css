@@ -147,6 +147,9 @@
     width: 100%;
     display: flex;
   }
+  #form-container .success-img img {
+    height: 30%;
+  }
 }
 /*___________________signIn and signUp page_____________________ */
 #form-container .form {
@@ -202,12 +205,11 @@
   width: 240px;
 }
 #form-container .form a {
-  text-decoration: none;
   font-size: 0.7rem;
   padding: 10px 0px 10px 20px;
 }
 #form-container .form label {
-  color: #635f87ff;
+  color: var(--sub-title-color);
   display: block;
   padding: 0px 20px;
 }
@@ -254,7 +256,8 @@
 }
 #form-container .sign-up .input .custom-file-label {
   transform: translateY(4rem);
-  font-size: 0.6rem;
+  font-size: 0.7rem;
+  width: 150px;
   cursor: pointer;
   text-decoration: underline;
   color: var(--button-color);
@@ -268,7 +271,7 @@
   -ms-transform: translateY(4rem);
   -o-transform: translateY(4rem);
 }
-#form-container .input .custom-file-label:hover {
+#form-container .input .custom-file-label:hover , #form-container .form a:hover {
   color: var(--primary-color);
 }
 
