@@ -11,10 +11,9 @@ export default class Quiz {
     prevBtnDom,
     submitBtnDom,
     addEventListenersToSavedQuestions,
-    addEventListenerToOptions,
+    addEventListenerToOptions
   ) {
     this.questions = questions;
-    this.score = 0;
     this.currentQuestionIndex = 0;
     this.isFirstQuestion = true;
     this.isLastQuestion = false;
@@ -31,10 +30,13 @@ export default class Quiz {
     this.userAnswers = {};
     this.savedQuestions = [];
     this.timerRef = null;
+    this.timeIsOut = false;
 
     /*  */
     addEventListenerToOptions();
   }
+
+  /* ========================= Related to the timer ========================= */
 
   startTimer() {
     let time = 60 * 5 * 1000;
@@ -50,10 +52,20 @@ export default class Quiz {
         clearInterval(this.timerRef);
 
         this._quizTimeout();
-        this._calculateScore();
+        this.submitBtnDom.click();
       }
     }, 1000);
   }
+
+  _stopTimer() {
+    if (this.timerRef) clearInterval(this.timerRef);
+  }
+
+  _quizTimeout() {
+    this.timeIsOut = true;
+  }
+
+  /* ========================= Related to the saved questions ========================= */
 
   goToQuestion(index) {
     this.currentQuestionIndex = index;
@@ -88,25 +100,24 @@ export default class Quiz {
     this.numOfSavedQuestionsElementDom.textContent = this.savedQuestions.length;
   }
 
+  /* ========================= Related to the checking answer ========================= */
+
   checkAnswer(answerIndex) {
     this.userAnswers[this.currentQuestionIndex] = answerIndex;
     this.renderQuestion();
   }
 
-  _quizTimeout() {
-    // render the screen of the quiz time out
-  }
+  /* ========================= Related to the rendering of the questions ========================= */
 
   _handleDisabledBtns() {
     if (this.isFirstQuestion) this.prevBtnDom.disabled = true;
     else this.prevBtnDom.disabled = false;
-  
+
     if (this.isLastQuestion) this.nextBtnDom.disabled = true;
     else this.nextBtnDom.disabled = false;
   }
-  
 
-  _handleProgressBar() {
+  _handleProgressBarRendering() {
     this.prgBar.value =
       ((this.currentQuestionIndex + 1) / this.questions.length) * 100;
   }
@@ -137,34 +148,13 @@ export default class Quiz {
   }
 
   renderQuestion() {
-    this._handleProgressBar();
+    this._handleProgressBarRendering();
     this._handleFirstOrLastQuestion();
     this._renderSavedQuestions();
     this._renderQuestion();
     this._renderAnswers();
     this._handleDisabledBtns();
     this.addEventListenersToSavedQuestions();
-  }
-
-  _calculateScore() {
-    this._stopTimer();
-
-    this.score = 0;
-    this.questions.forEach((question, i) => {
-      if (question.correctAnswer === question.answers[this.userAnswers[i]])
-        this.score++;
-    });
-    return this.score;
-  }
-
-  getResultObject() {
-    return {
-      question: this.questions.question,
-      answers: this.questions.answers,
-      userAnswers: this.userAnswers,
-      correctAnswers: this.questions.correctAnswer,
-      score: this.score,
-    };
   }
 
   nextQuestion() {
@@ -177,7 +167,38 @@ export default class Quiz {
     this.renderQuestion();
   }
 
-  _stopTimer() {
-    clearInterval(this.timerRef);
+  /* ========================= Related to results screen ========================= */
+
+  _calculateScore() {
+    let score = 0;
+    this.questions.forEach((question, i) => {
+      if (question.correctAnswer === question.answers[this.userAnswers[i]])
+        score++;
+    });
+    return score;
+  }
+
+  getResultObject() {
+    this._stopTimer();
+
+    const resultsArray = [];
+    this.questions.forEach((question, i) => {
+      resultsArray.push({
+        question: question.question,
+        answers: question.answers,
+        userAnswer: question.answers[this.userAnswers[i]],
+        correctAnswer: question.correctAnswer,
+      });
+    });
+
+    const resultsObject = {
+      resultsArray: resultsArray,
+      score: this._calculateScore(),
+      timeIsOut: this.timeIsOut,
+    };
+
+    console.log("resultsObject: ", resultsObject);
+
+    return resultsObject;
   }
 }

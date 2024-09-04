@@ -5,13 +5,11 @@ const switchingObj = {
   prgBar: document.querySelector("#quiz-container #questions-progress"),
   questionBox: document.querySelector("#quiz-container .question-box"),
   openSideBarBtn: document.querySelector("#quiz-container #open-side-bar"),
-  quizContainer: document.querySelector("#quiz-container"),
   formsContainer: document.querySelector("#form-container"),
   startQuizBtn: document.querySelector("#start-quiz-btn"),
   quizContainerContent: document.querySelector("#quiz-container .content"),
 };
 
-// switchingObj.quizContainer.style.display = "none";
 
 function displayProgressBar() {
   switchingObj.prgBar.classList.remove("hide");
