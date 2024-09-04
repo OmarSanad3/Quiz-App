@@ -76,7 +76,7 @@ function addEventListenersToSavedQuestions() {
 /* ==================== render the first question ==================== */
 quiz.renderQuestion();
 
-/* Event Listeners */
+/* ==================== Event Listeners ==================== */
 nextBtn.addEventListener("click", () => {
   quiz.nextQuestion();
 });

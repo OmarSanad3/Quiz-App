@@ -1,8 +1,28 @@
 let theResultsObject = null;
+/* 
+  theResultsObject = {
+    resultsArray: [
+      {
+        question:,
+        answers: (arr) aka options,
+        userAnswer: (string),
+        correctAnswer: (string),
+      },
+      {
+        question:,
+        answers: (arr) aka options,
+        userAnswer: (string),
+        correctAnswer: (string),
+      }
+    ]
+    ,
+    score: (number),
+    timeIsOut: (bool),
+  }
+*/
 
 export function passResultsObject(resultsObject) {
   theResultsObject = resultsObject;
-  console.log("Results passed to results screen: ", theResultsObject);
 }
 
 export function previewResults() {
@@ -45,7 +65,7 @@ export function previewResults() {
     quizContainer.style.display = "none";
     /* ============================== render the results screen ============================== */
     // TODO: ((((display the results screen div))))
-    // TODO: 
+    // TODO:
     // TODO:
     // TODO:
 
