@@ -1,5 +1,10 @@
-const DOM = document.getElementById("form-container");
+// ---------------importing modules----------------------------------
+import { goToSignUp, goToSignIn , goToQuiz , showSuccessPageMobile  , showSuccessPageBigScreen } from "./transition.js";
+import { showErrorMessages, removeErrorMessages } from "./handleError.js";
+import { addUser } from "./addUser.js";
 
+// ---------------defining variables----------------------------------
+const DOM = document.getElementById("form-container");
 const signInForm = DOM.querySelector(".sign-in");
 const signUpForm = DOM.querySelector(".sign-up");
 
@@ -7,112 +12,18 @@ const goSignUp = signInForm.querySelector("a");
 const goSignIn = signUpForm.querySelector("a");
 
 const cover = DOM.querySelector(".cover");
-const userData = {};
 
+// ---------------defining functions---------------------------------
 document.querySelector(".custom-file-label").addEventListener("click", function (e) {
   e.preventDefault();
   document.getElementById("image-url").click();
 });
 
-/* go to sign up form */
-goSignUp.addEventListener("click", function (event) {
-  event.preventDefault();
-  let moveSignIn = signInForm.style;
-  moveSignIn.transform = "translateY(150%)";
-  moveSignIn.transitionDelay = "0s";
-
-  let showSignUp = signUpForm.style;
-  showSignUp.transform = "translateX(0)";
-  showSignUp.transitionDelay = "0.5s";
-
-  let toggleCover = cover.querySelector(".sign-in-img").style;
-  toggleCover.transform = "translateY(200%)";
-
-  let toggleCover2 = cover.querySelector(".sign-up-img").style;
-  toggleCover2.transform = "translateY(-100%)";
-});
-
-/*go to sign in form*/
-goSignIn.addEventListener("click", function (event) {
-  event.preventDefault();
-  let moveSignUp = signUpForm.style;
-  moveSignUp.transform = "translateX(-130%)";
-  moveSignUp.transitionDelay = "0s";
-
-  let showSignIn = signInForm.style;
-  showSignIn.transform = "translateY(0)";
-  showSignIn.transitionDelay = "0.7s";
-
-  let toggleCover = cover.querySelector(".sign-in-img").style;
-  toggleCover.transform = "translateY(0)";
-
-  let toggleCover2 = cover.querySelector(".sign-up-img").style;
-  toggleCover2.transform = "translateY(-210%)";
-});
-
-/* this function work in big screen only to show successful page */
-function showSuccessPageBigScreen(event) {
-  event.preventDefault();
-
-  cover.style.transform = "translateX(40%) scale(1.1)";
-
-  let moveForm = DOM.querySelector(".form").style;
-  moveForm.transform = "translateX(-60%)";
-
-  let signInImg = cover.querySelector(".sign-in-img").style;
-  signInImg.transitionDelay = "1s";
-  signInImg.transform = "translateY(-100%)";
-
-  let showSuccessImg = cover.querySelector(".success-img").style;
-  showSuccessImg.transitionDelay = "0.8s";
-  showSuccessImg.transform = "translate(20%,-200%)";
-}
-
-/* to handle transition in mobile screens to show successful page */
-function showSuccessPageMobile(event) {
-  event.preventDefault();
-  console.log("mobile");
-
-  let signInImg = cover.querySelector(".sign-in-img").style;
-  signInImg.transform = "translateY(-100%)";
-
-  styleCover = cover.style;
-  styleCover.transform = "translateY(40%)";
-  styleCover.height = "435px";
-  styleCover.transitionDelay = "0.5s";
-
-  let moveForm = DOM.querySelector(".form").style;
-  moveForm.opacity = "0";
-
-  let showSuccessImg = cover.querySelector(".success-img").style;
-  showSuccessImg.transitionDelay = "0.5s";
-  showSuccessImg.transform = "translate(0%,-200%)";
-}
-
-function showErrorMessages(messages, inputBox, label) {
-  if (!label.querySelector("span")) {
-    const error = document.createElement("span");
-    error.textContent = messages;
-    error.style.color = "red";
-    error.style.fontSize = "9px";
-    error.style.margin = "0";
-    error.style.padding = "0";
-    error.style.display = "inline-block";
-    error.style.marginLeft = "10px"; // Adjust the spacing as needed
-    error.style.position = "absolute";
-    inputBox.style.border = "1px solid red";
-    label.appendChild(error);
-  }
-}
-
-function removeErrorMessages(lable, inputBox) {
-  inputBox.addEventListener("input", function () {
-    inputBox.style.border = "1px solid rgb(171, 171, 171)";
-    if (lable.querySelector("span")) lable.querySelector("span").remove();
-  });
-}
+goSignIn.addEventListener("click", (event) => goToSignIn(event , signUpForm , signInForm , cover));
+goSignUp.addEventListener("click", (event) => goToSignUp(event , signUpForm , signInForm , cover));
 
 const InMobileScreen = window.matchMedia("(max-width: 768px)");
+
 /* Check if user exists in local storage */
 function checkUserCredentials(event) {
   event.preventDefault();
@@ -140,9 +51,9 @@ function checkUserCredentials(event) {
         setProfileImage.src = userData.image;
       }
       if (InMobileScreen.matches) {
-        showSuccessPageMobile(event);
+        showSuccessPageMobile(event , cover , DOM);
       } else {
-        showSuccessPageBigScreen(event);
+        showSuccessPageBigScreen(event , cover , DOM);
       }
     } else {
       // User exists but password is incorrect
@@ -162,97 +73,9 @@ function checkUserCredentials(event) {
 const signInButton = DOM.querySelector(".sign-in button");
 signInButton.addEventListener("click", checkUserCredentials);
 
-/* Add user to local storage when sign up*/
-function addUser(event) {
-  event.preventDefault();
-  const email = signUpForm.querySelector("input[type='email']");
-  const Password = signUpForm.querySelector("input[id='set-password']");
-  const confirmPassword = signUpForm.querySelector(
-    "input[id='confirm-password']"
-  );
-  const emailLabel = signUpForm.querySelector("label[for='email']");
-  const passwordLabel = signUpForm.querySelector("label[for='set-password']");
-  const confirmPasswordLabel = signUpForm.querySelector(
-    "label[for='confirm-password']"
-  );
-
-  // Remove error message when user starts typing
-  removeErrorMessages(emailLabel, email);
-  // Remove error message when user starts typing
-  removeErrorMessages(passwordLabel, Password);
-  // Remove error message when user starts typing
-  removeErrorMessages(confirmPasswordLabel, confirmPassword);
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email.value)) {
-    showErrorMessages(
-      "*Please enter a valid email address.",
-      email,
-      emailLabel
-    );
-    return;
-  }
-  if (!Password.value) {
-    showErrorMessages("*Please enter password.", Password, passwordLabel);
-    return;
-  }
-  if (Password.value.length < 8) {
-    showErrorMessages(
-      "*Password must be at least 8 characters long.",
-      Password,
-      passwordLabel
-    );
-    return;
-  }
-  if (!email.value) {
-    showErrorMessages("*Please enter email.", email, emailLabel);
-    return;
-  }
-  if (Password.value !== confirmPassword.value) {
-    showErrorMessages(
-      "*Passwords don't match.",
-      confirmPassword,
-      confirmPasswordLabel
-    );
-    return;
-  }
-  if (localStorage.getItem(email.value)) {
-    showErrorMessages(
-      "*User already exists. Please sign in.",
-      email,
-      emailLabel
-    );
-  } else {
-    userData.password = Password.value;
-    Swal.fire({
-      title: "You registered successfully.",
-      text: "Please sign in to continue.",
-      icon: "success",
-    });
-    goSignIn.click(); // Move to sign-in form after successful registration
-  }
-  fetchImage(email);
-}
-
+// ---------------Add New User ----------------------------------
 const signUpButton = signUpForm.querySelector("button");
-
 signUpButton.addEventListener("click",  addUser );
 
-function fetchImage(email) {
-  const getimage = document.getElementById("image-url");
-  const reader = new FileReader();
-  reader.onloadend = function () {
-    userData.image = reader.result;
-    localStorage.setItem(email.value, JSON.stringify(userData));
-    console.log(userData);
-  };
-  reader.readAsDataURL(getimage.files[0]);
-}
-
 /* go to quiz page */
-const goQuiz = DOM.querySelector(".success-img button");
-goQuiz.addEventListener("click", function (event) {
-  event.preventDefault();
-  DOM.style.transform = "translate(-50% , -190%)";
-  DOM.style.opacity = "0";
-});
+goToQuiz(DOM);
