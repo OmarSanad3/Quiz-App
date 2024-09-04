@@ -6,7 +6,12 @@ export default class Quiz {
     prgBar,
     timerDom,
     savedQuestionsContainerDom,
-    numOfSavedQuestionsElementDom
+    numOfSavedQuestionsElementDom,
+    nextBtnDom,
+    prevBtnDom,
+    submitBtnDom,
+    addEventListenersToSavedQuestions,
+    addEventListenerToOptions,
   ) {
     this.questions = questions;
     this.score = 0;
@@ -19,9 +24,16 @@ export default class Quiz {
     this.prgBar = prgBar;
     this.savedQuestionsContainerDom = savedQuestionsContainerDom;
     this.numOfSavedQuestionsElementDom = numOfSavedQuestionsElementDom;
+    this.nextBtnDom = nextBtnDom;
+    this.prevBtnDom = prevBtnDom;
+    this.submitBtnDom = submitBtnDom;
+    this.addEventListenersToSavedQuestions = addEventListenersToSavedQuestions;
     this.userAnswers = {};
     this.savedQuestions = [];
     this.timerRef = null;
+
+    /*  */
+    addEventListenerToOptions();
   }
 
   startTimer() {
@@ -56,7 +68,7 @@ export default class Quiz {
         (index) => index !== this.currentQuestionIndex
       );
 
-    this._renderSavedQuestions();
+    this.renderQuestion();
   }
 
   _renderSavedQuestions() {
@@ -84,6 +96,15 @@ export default class Quiz {
   _quizTimeout() {
     // render the screen of the quiz time out
   }
+
+  _handleDisabledBtns() {
+    if (this.isFirstQuestion) this.prevBtnDom.disabled = true;
+    else this.prevBtnDom.disabled = false;
+  
+    if (this.isLastQuestion) this.nextBtnDom.disabled = true;
+    else this.nextBtnDom.disabled = false;
+  }
+  
 
   _handleProgressBar() {
     this.prgBar.value =
@@ -121,6 +142,8 @@ export default class Quiz {
     this._renderSavedQuestions();
     this._renderQuestion();
     this._renderAnswers();
+    this._handleDisabledBtns();
+    this.addEventListenersToSavedQuestions();
   }
 
   _calculateScore() {
