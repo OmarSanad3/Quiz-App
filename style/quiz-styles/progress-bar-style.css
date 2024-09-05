@@ -3,7 +3,7 @@ progress {
   position: absolute;
   top: 20px;
   appearance: none;
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   border-radius: 25px;
   border: none;
   -webkit-appearance: none;
@@ -12,6 +12,7 @@ progress {
   -moz-transition: all 0.5s ease-in-out 0.5s;
   -ms-transition: all 0.5s ease-in-out 0.5s;
   -o-transition: all 0.5s ease-in-out 0.5s;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 progress.hide {
@@ -24,20 +25,21 @@ progress.hide {
 
 /* bar in other browsers */
 progress::-webkit-progress-bar {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   border-radius: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 /* color for other browsers */
 progress::-webkit-progress-value {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   border-radius: 25px;
   transition: all 0.3s ease-in;
 }
 
 /* color for firefox */
 progress::-moz-progress-bar {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   border-radius: 25px;
   transition: all 0.3s ease-in;
 }
