@@ -23,3 +23,9 @@ body {
   background-size: cover;
   overflow: hidden;
 }
+
+@media (max-width: 768px) {
+  body {
+    height: 150vh;
+  }
+}
