@@ -3,15 +3,18 @@ const SideBarObj = {
   openSideBarBtn: document.querySelector("#quiz-container #open-side-bar"),
   sideBar: document.querySelector("#quiz-container .side-bar"),
   prgBar: document.querySelector("#quiz-container #questions-progress"),
+  lastView: "big",
 };
 
 function handleSideBar() {
-  if (window.innerWidth > 768) {
+  if (window.innerWidth > 768 && SideBarObj.lastView === "small") {
     SideBarObj.sideBar.classList.remove("is-hidden");
-  } else {
+    SideBarObj.lastView = "big";
+  } else if (window.innerWidth <= 768 && SideBarObj.lastView === "big") {
     SideBarObj.sideBar.classList.add("is-hidden");
     SideBarObj.openSideBarBtn.classList.remove("is-hidden");
     SideBarObj.sideBar.style["transition-delay"] = "0s";
+    SideBarObj.lastView = "small";
   }
 }
 
