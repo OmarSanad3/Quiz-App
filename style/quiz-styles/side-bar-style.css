@@ -30,7 +30,7 @@
 
 @media (max-width: 768px) {
   #quiz-container .content .side-bar {
-    min-height: 90%;
+    min-height: 50%;
     position: absolute;
     top: 10px;
     right: 5px;
