@@ -1,5 +1,5 @@
 #results {
-    /* display: none; */
+    display: none;
     transform: translateY(200%);
     -webkit-transform: translateY(200%);
     -moz-transform: translateY(200%);

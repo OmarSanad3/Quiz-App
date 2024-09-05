@@ -44,65 +44,69 @@ export function previewResults() {
     quizContainer.style.display = "none";
     /* ============================== render the results screen ============================== */
     const resultsScreen = document.getElementById("results");
-    resultsScreen.style.transform = "translateY(0)";
-    document.querySelector("body").style.setProperty("overflow", "auto");
-    const showScore = resultsScreen.querySelector(".show-score");
-    const showAnswers = resultsScreen.querySelector(".show-answers");
     resultsScreen.classList.add("active");
 
-    showScore.innerHTML = `Your score is: ${theResultsObject.score} / 10`;
+    setTimeout(() => {
+      resultsScreen.style.transform = "translateY(0)";
+      document.querySelector("body").style.setProperty("overflow", "auto");
+      const showScore = resultsScreen.querySelector(".show-score");
+      const showAnswers = resultsScreen.querySelector(".show-answers");
 
-    function getAnswerClass(result, answer) {
-      if (
-        result.userAnswer === result.correctAnswer &&
-        result.userAnswer === answer
-      ) {
-        return "correct";
-      }
-      if (
-        result.userAnswer !== result.correctAnswer &&
-        result.userAnswer === answer
-      ) {
-        return "wrong";
-      }
-      if (result.correctAnswer === answer) {
-        return "correct";
-      }
-      return "";
-    }
-    theResultsObject.resultsArray.forEach((result, i) => {
-      const resultDiv = document.createElement("div");
-      resultDiv.classList.add("result");
-      resultDiv.innerHTML = `
-        <div class="question">
-          <h3>Question ${i + 1} <span> </span> </h3>
-          <p>${result.question}</p>
-        </div>
-        <div class = "options">
-          ${result.answers
-            .map(
-              (answer) =>
-                `<button class="option ${getAnswerClass(
-                  result,
-                  answer
-                )}"> ${answer}</button>`
-            )
-            .join("")}
-        </div>`;
-      // Ensure the span element exists before setting its content
+      showScore.innerHTML = `Your score is: ${theResultsObject.score} / 10`;
 
-      const point = resultDiv.querySelector(".question h3 span");
-      if (point) {
-        // it does not work without this (if statement) I don't know why
-        // Update the span content based on the answer correctness
-        if (getAnswerClass(result, result.userAnswer) === "wrong") {
-          point.textContent = "0 / 1 point";
-        } else {
-          point.textContent = "1 / 1 point";
+      function getAnswerClass(result, answer) {
+        if (
+          result.userAnswer === result.correctAnswer &&
+          result.userAnswer === answer
+        ) {
+          return "correct";
         }
+        if (
+          result.userAnswer !== result.correctAnswer &&
+          result.userAnswer === answer
+        ) {
+          return "wrong";
+        }
+        if (result.correctAnswer === answer) {
+          return "correct";
+        }
+        return "";
       }
-      showAnswers.appendChild(resultDiv);
-    });
+      theResultsObject.resultsArray.forEach((result, i) => {
+        const resultDiv = document.createElement("div");
+        resultDiv.classList.add("result");
+        resultDiv.innerHTML = `
+            <div class="question">
+              <h3>Question ${i + 1} <span> </span> </h3>
+              <p>${result.question}</p>
+            </div>
+            <div class = "options">
+              ${result.answers
+                .map(
+                  (answer) =>
+                    `<button class="option ${getAnswerClass(
+                      result,
+                      answer
+                    )}"> ${answer}</button>`
+                )
+                .join("")}
+            </div>`;
+        // Ensure the span element exists before setting its content
+
+        const point = resultDiv.querySelector(".question h3 span");
+        if (point) {
+          // it does not work without this (if statement) I don't know why
+          // Update the span content based on the answer correctness
+          if (getAnswerClass(result, result.userAnswer) === "wrong") {
+            point.textContent = "0 / 1 point";
+          } else {
+            point.textContent = "1 / 1 point";
+          }
+        }
+        showAnswers.appendChild(resultDiv);
+      });
+    }, 1000);
+
     /* ============================== done rendered the results screen ============================== */
   }, 2000);
   /* 
