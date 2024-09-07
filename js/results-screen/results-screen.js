@@ -105,10 +105,10 @@ export function previewResults() {
         }
         showAnswers.appendChild(resultDiv);
       });
-    }, 1000);
+    }, 400);
 
     /* ============================== done rendered the results screen ============================== */
-  }, 2000);
+  }, 500);
   /* 
   theResultsObject = {
     resultsArray: [
