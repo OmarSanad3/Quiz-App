@@ -78,11 +78,15 @@ export function addUser(event) {
 
 function fetchImage(email) {
   const getimage = document.getElementById("image-url");
+  if(!getimage.files[0]){
+    userData.image = "";
+    localStorage.setItem(email.value, JSON.stringify(userData));
+    return;
+  }
   const reader = new FileReader();
   reader.onloadend = function () {
     userData.image = reader.result;
     localStorage.setItem(email.value, JSON.stringify(userData));
-    console.log(userData);
   };
   reader.readAsDataURL(getimage.files[0]);
 }
