@@ -257,7 +257,7 @@
 #form-container .sign-up .input .custom-file-label {
   transform: translateY(4rem);
   font-size: 0.7rem;
-  width: 150px;
+  width: 250px;
   cursor: pointer;
   text-decoration: underline;
   color: var(--button-color);

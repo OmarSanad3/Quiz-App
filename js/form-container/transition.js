@@ -20,7 +20,7 @@ export function goToSignUp(event, signUpForm, signInForm, cover) {
 export function goToSignIn(event, signUpForm, signInForm, cover) {
   event.preventDefault();
   let moveSignUp = signUpForm.style;
-  moveSignUp.transform = "translateX(-130%)";
+  moveSignUp.transform = "translateX(-150%)";
   moveSignUp.transitionDelay = "0s";
 
   let showSignIn = signInForm.style;

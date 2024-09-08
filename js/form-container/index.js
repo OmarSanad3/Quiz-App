@@ -50,6 +50,7 @@ function checkUserCredentials(event) {
           .querySelector(".user-info img");
         setProfileImage.src = userData.image;
       }
+      document.querySelector("#quiz-container .user-info h3").textContent = userData.userName;
       if (InMobileScreen.matches) {
         showSuccessPageMobile(event , cover , DOM);
       } else {
@@ -74,6 +75,15 @@ const signInButton = DOM.querySelector(".sign-in button");
 signInButton.addEventListener("click", checkUserCredentials);
 
 // ---------------Add New User ----------------------------------
+const imgURL = signUpForm.querySelector("input[type='file']");
+const imageLabel = signUpForm.querySelector(".custom-file-label");
+imgURL.addEventListener("change", () => {
+  if(!imgURL.files.length){
+    return;
+  }
+  console.log( typeof imgURL.files[0].name);
+  imageLabel.textContent = imgURL.files[0].name;
+});
 const signUpButton = signUpForm.querySelector("button");
 signUpButton.addEventListener("click",  addUser );
 

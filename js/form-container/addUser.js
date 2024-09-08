@@ -7,6 +7,7 @@ const goSignIn = signUpForm.querySelector("a");
 
 export function addUser(event) {
   event.preventDefault();
+  const userName = signUpForm.querySelector("input[type='text']");
   const email = signUpForm.querySelector("input[type='email']");
   const Password = signUpForm.querySelector("input[id='set-password']");
   const confirmPassword = signUpForm.querySelector(
@@ -65,6 +66,7 @@ export function addUser(event) {
       emailLabel
     );
   } else {
+    userData.userName = userName.value;
     userData.password = Password.value;
     Swal.fire({
       title: "You registered successfully.",
@@ -78,6 +80,7 @@ export function addUser(event) {
 
 function fetchImage(email) {
   const getimage = document.getElementById("image-url");
+  const fileLabel = document.querySelector(".custom-file-label");
   if(!getimage.files[0]){
     userData.image = "";
     localStorage.setItem(email.value, JSON.stringify(userData));
