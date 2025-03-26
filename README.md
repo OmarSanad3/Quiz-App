@@ -4,7 +4,7 @@ Welcome to **Quizzo**, a sleek, interactive, and fully responsive quiz platform 
 
 ## 🌐 Live Demo
 
-Check out the live version of Quizzo here: (https://zyadelnaghy.github.io/Quiz-App/)
+Check out the live version of Quizzo here: (https://omarsanad3.github.io/Quiz-App/)
 
 ## 🚀 Features
 
@@ -65,4 +65,4 @@ You need a modern web browser like Chrome, Firefox, or Edge to run Quizzo. No ad
 
 1. Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/ZyadElnaghy/Quiz-App.git
+   git clone https://github.com/omarsanad3/Quiz-App.git
